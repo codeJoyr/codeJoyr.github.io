@@ -15,11 +15,16 @@
 <meta property="og:site_name" content="Joyr">
 <meta property="og:description" content="本篇文章是对于HTML的复习…">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/100.png">
+<meta property="og:image" content="http://example.com/images/101.png">
+<meta property="og:image" content="http://example.com/images/102.png">
+<meta property="og:image" content="http://example.com/images/103.png">
 <meta property="article:published_time" content="2021-08-14T01:06:22.000Z">
-<meta property="article:modified_time" content="2021-08-14T06:18:54.971Z">
+<meta property="article:modified_time" content="2021-08-15T03:25:30.131Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/100.png">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
   
@@ -163,7 +168,105 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="本篇文章是对于HTML的复习…"><a href="#本篇文章是对于HTML的复习…" class="headerlink" title="本篇文章是对于HTML的复习…"></a>本篇文章是对于HTML的复习…<span id="more"></span></h4>
+        <h4 id="本篇文章是对于HTML的复习…"><a href="#本篇文章是对于HTML的复习…" class="headerlink" title="本篇文章是对于HTML的复习…"></a>本篇文章是对于HTML的复习…<span id="more"></span></h4><p><strong>HTML ： （Hypertext Markup Language）超文本标记语言</strong>。<br>他负责网页的三个要素中的<strong>结构</strong>。<br>HTML使用<strong>标签</strong>的形式来表示网页中的不同组成部分。<br>所谓超文本值得是<strong>超链接</strong>，使用超链接可以让我们从一个页面跳转到另一个页面中。</p>
+<p><strong>HTML的注释</strong>：注释的内容会被浏览器所忽略，不会在页面中直接显示，但是可以在源码中查看注释，注释用来对代码进行解释说明的，开发中一定要养成良好的编写注释的习惯，注释要求简单明了；注释还可以将一些不想显示的内容隐藏；<strong>注释不允许嵌套。</strong></p>
+<p><strong>HTML标签</strong>：标签一般成对出现，但是运载一些自结束标签。</p>
+<p><strong>标签的属性</strong>：在标签中（开始标签或者自结束标签）还可以设置属性；属性是一个名值对结构（x=y）; 属性从来设置标签中的内容如何显示；属性和标签名或其他属性应该使用空格隔开；属性不能瞎写，应该根据文档中的规定来编写，有些属性有属性值，有些没有属性值，如果有属性值，属性值应该用引号引起来。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>这是我的<span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&quot;red&quot;</span>&gt;</span>第一个<span class="tag">&lt;/<span class="name">font</span>&gt;</span>网页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/100.png">    该图是对上述代码的显示</p>
+<h4 id="网页的基本结构："><a href="#网页的基本结构：" class="headerlink" title="网页的基本结构："></a><strong>网页的基本结构</strong>：</h4><blockquote>
+<p>文档声明（doctype）</p>
+<ul>
+<li>文档声明用来告诉浏览器当前网页的版本</li>
+<li>HTML5的文档声明 —&gt;  <!doctype HTML>  或者   <!Doctype html></li>
+</ul>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">此代码非直接运行的代码而为解释代码：</span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>------&gt; DTD 文档类型声明 h5(告诉浏览器其为一个html页面)；</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span> (语言为英语)</span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span>  ------&gt;字符集 (utf-8的作用是支持世界上几乎所有国家的语言而统一的规则)；</span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  ------&gt;网页标题(头标题)</span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    This is a first page!!!   ------&gt;body一般放网页真正显示的内容</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<h4 id="实体："><a href="#实体：" class="headerlink" title="实体："></a><strong>实体：</strong></h4><blockquote>
+<p>在网页中编写的多个空格默认情况会自动被浏览器解析为一个空格。<br>在HTML中有些对象，我们不能直接书写一些特殊符号。例如多个连续的空格，字符两侧的大于小于号。<br>如果需要在网页中书写这些特殊的符号，则需要使用HTML中的实体(转义字符)。<br>实体的语法：    &amp;实体的名字;   —–&gt;     &amp;nbsp；（代表空格）……  <a target="_blank" rel="noopener" href="https://www.w3cschool.cn/htmltags/html-symbols.html"> w3school实体符号参考手册 </a></p>
+</blockquote>
+<h4 id="meta标签："><a href="#meta标签：" class="headerlink" title="meta标签："></a><strong>meta标签</strong>：</h4><blockquote>
+<p>meta主要用于设置网页中的一些元数据，元数据不是给用户看的。<br>charset 指定网页的字符集<br>name 指定的数据名称<br>content 指定的数据内容</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;html5,前端,css3&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><font size="6">keywords 表示网站的关键字，可以同时指定多个关键字，关键字间使用逗号隔开</font></p>
+<img src="/images/101.png">
+
+<p><font size="6">description 用于指定网站的描述</font></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">网站的描述会显示在搜索引擎的搜索的结果中</span><br><span class="line">title标签的内容会作为搜索结果的超链接上的文字显示</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">cnotent</span>=<span class="string">&quot;这是一个很牛逼的网站&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="/images/102.png">
+
+<h4 id="语义化标签："><a href="#语义化标签：" class="headerlink" title="语义化标签："></a>语义化标签：</h4><p>在网页中HTML专门用来负责网页的结构，所以在使用HTML标签时候，应该注意到的是标签的语义，而不是对应的样式。</p>
+<blockquote>
+<p><strong>标题标签</strong>（块元素）：  <strong>h1 ~ h6</strong>  一共有六级标题 ，从h1 ~ h6 重要性递减，h1在网页中的重要性仅次于title标签，一般情况下一个页面中只会有一个h1。<br>一般情况下标签只会使用到h1 ~ h3，h4 ~ h6很少使用。<br>在页面中独占一行的元素称为块元素。<br><strong>标题分组标签</strong>（块元素）：<strong>hgroup</strong>标签用来为标题分组，可以将一组相关的镖旗同时放入hgroup中。<br><strong>段落标签</strong>（块元素）：<strong>p</strong>标签表示页面中的一个段落。</p>
+</blockquote>
+<blockquote>
+<p><strong>em 标签</strong>（行内元素）：表示语音语调的一个加重。<br><strong>strong标签</strong>（行内元素）：表示强调重要内容。<br><strong>blockquote标签</strong>（块元素）：表示一个长引用。<br><strong>q标签</strong>（行内元素）：表示一个短引用。<br><strong>br标签</strong>：表示页面中的换行。</p>
+</blockquote>
+<p><strong>块元素与行内元素的区别</strong></p>
+<blockquote>
+<p>块元素在网页中一般通过块元素来对页面就行布局。<br>行内元素主要用来包裹文字。<br>一般情况下会在块元素中放行内元素，而不是在行内元素中放块元素，块元素中基本所有的元素都能放。<br>p标签中不能存放任何的元素。<br>浏览器在解析网页的时候，会自动对网页中不符合规范的内容进行修正。</p>
+<blockquote>
+<p>例如：标签卸载了根元素的外部；p元素中潜逃了块元素；根元素中出现了除head和body以外的子元素。</p>
+</blockquote>
+</blockquote>
+<p><strong>布局标签（结构化语义标签）</strong></p>
+<blockquote>
+<p><strong>header</strong> 表示网页的头部。<br><strong>main</strong> 表示网页的主题部分，一个页面中只有一个main<br><strong>footer</strong> 表示网页的底部页脚部分。<br><strong>nav</strong> 表示网页中的导航栏。<br><strong>aside</strong> 表示和主体相关的其他内容（侧边栏）。<br><strong>article</strong> 表示一个独立的文章。<br><strong>section</strong> 表示一个独立的区块，上面的标签都不能使用的时候使用section。</p>
+<p><strong>div</strong> 块元素 没有语义，就是用来表示一个区块，可以用来替换上面的所有，目前来讲div还是我们使用的主要的布局元素。<br><strong>span</strong> 行内元素。没有语义，一般用于在网页中选中文字。</p>
+</blockquote>
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><blockquote>
+<p>在HTML中也可以使用列表，HTML的列表一共有三种：<br>1、无序列表  2、 有序列表  3、定义列表<br><strong>无序列表</strong>，使用 <strong>ul 标签</strong>来创建无序列表，<strong>使用 li 标签</strong>表示列表项。<br><strong>有序列表</strong>，使用 <strong>ol 标签</strong>来创建有序列表，<strong>使用 li 标签</strong>表示列表项。<br><strong>定义列表</strong>，使用 <strong>dl 标签</strong>来创建定义列表，<strong>使用dl标签</strong>表示定义的内容，<strong>使用dd标签</strong>来对内容进行解析。</p>
+<p><strong>列表之间可以相互嵌套</strong></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>结构<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>表现<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>行为<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>结构<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>表现<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>行为<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dt</span>&gt;</span>结构<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span>结构是用来表示网页的结构，用来规定网页中哪里是标题，哪里是段落<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dt</span>&gt;</span>表现<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span>表现是用来展示网页的布局，将网页进行修饰。<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/103.png">  对上述代码的展示</p>
+<h4 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h4><blockquote>
+<p><strong>超链接</strong>（行内元素）：可以让我们从一个页面跳转到其他页面，或者是当前页面的其他的位置，使用 <strong>a 标签</strong> 定义超链接；在a标签中可以存放除它自身之外的任何东西。<br>在开发中可以将 <strong># 或 javascript:;</strong> 作为超链接的路径的占位符使用，# 就是跳转到页面的顶部，而 javascript:; 则是点击后没有任何反应。</p>
+<p>属性： </p>
+<blockquote>
+<p><strong>href</strong> 指定跳转的目标路径，值可以是一个外部网站的地址，可以是一个内部页面的地址，跳转内部页面的时候注意路径的问题。<br><strong>target</strong>  指定页面的打开方式。**_self（默认值）** 表示在当前页面中打开  <strong>_blank</strong> 表示在一个新的窗口打开该超链接。<br><strong>id</strong> 每一个标签都可以添加一个id属性，id属性就是元素的唯一表示，同一个页面中不能出现重复的id属性 </p>
+</blockquote>
+<p><strong>回到顶部</strong>： 在href地址中设置为 # ，这样在点击超链接以后页面不会发生跳转，而是转到当前页面的顶部位置。<br><strong>跳转到页面的指定位置</strong> 只需要在该位置添加一个超链接并且添加一个id属性，然后将开始的地方的超链接的地址设置为 #id 即可。</p>
+</blockquote>
+<h4 id="图片标签"><a href="#图片标签" class="headerlink" title="图片标签"></a>图片标签</h4><blockquote>
+<p>图片标签用于向当前页面中引入一个外部图片，<strong>使用 img 标签</strong> 来引入外部图片，img 是一个自结束标签。<br><strong>img</strong> 这种元素属于替换元素（基于行内元素和块元素之间。就有两种元素的特点）<br>属性：</p>
+<blockquote>
+<p><strong>src属性</strong> 指定的是外部图片的路径，路径规则与超链接一致。<br><strong>alt属性</strong> 是对图片的描述，这个描述在默认情况下不会显示，有些浏览器会在图片无法加载的时候显示该文字；搜索引擎会根据alt中的内容来识别图片，如果不写alt属性，则图片不会被搜索引擎所搜索到。<br><strong>width属性</strong> 图片的宽度    <strong>height属性</strong> 图片的高度   宽度和高度中如果只修改了一个，则另一个会等比例修改。<br><strong>注意</strong>：一般情况下在pc端，不建议修改图片的大小。</p>
+</blockquote>
+</blockquote>
+<p><strong>图片的格式</strong></p>
+<blockquote>
+<p><strong>jpeg（jpg）</strong>: 支持的颜色比较丰富，不支持透明效果，不支持动图。 一般用来显示照片<br><strong>gif</strong> : 支持的颜色比较少，支持简单透明，支持动图。一般用来显示颜色单一的图片，动图<br><strong>png</strong>： 支持的颜色丰富，支持复杂透明，不支持动图。一般用来显示颜色丰富，复杂透明图片，转为网页而生<br><strong>wbep</strong>：这种格式是谷歌新推出的专门用来表示网页中的图片的一种格式，它具备其他格式图片的所有优点，而且文件还特别的小。<strong>缺点就是浏览器兼容性不好。</strong><br><strong>base64</strong>： 将图片使用base64进行编码，这样可以直接将图片转换成字符，通过字符的形式来引入图片，一般都是一些需要和网页一起加载的图片才会使用base64格式的图片，加载速度很快。</p>
+</blockquote>
+<p><strong>效果一样用小的，效果不一样用效果好的。</strong></p>
+<h4 id="内联框架"><a href="#内联框架" class="headerlink" title="内联框架"></a>内联框架</h4><blockquote>
+<p><strong>iframe标签</strong> ： 内联框架，用于向当前页面中引入一个其他页面<br><strong>属性：</strong></p>
+<blockquote>
+<p><strong>src属性</strong> 指定要引入的网页的路径。<br><strong>width属性</strong> 指定页面的宽度<br><strong>height属性</strong> 指定页面的高度<br><strong>frameborder属性</strong> 指定内联框架的边框</p>
+</blockquote>
+</blockquote>
+<h4 id="音视频播放"><a href="#音视频播放" class="headerlink" title="音视频播放"></a>音视频播放</h4><blockquote>
+<p><strong>audio标签</strong> ： 用来向页面中引入外部的音频文件，同样是替换元素，音视频文件引入是默认情况下是不允许用户自己控制播放停止的。<br>属性：</p>
+<blockquote>
+<p><strong>src</strong> ： 引入的音频文件的路径。<br><strong>controls</strong> （没有值）： 是否允许用户控制播放，没有值，如果有这个属性就可以控制，没有就不允许控制。<br><strong>autoplay</strong> （没有值）： 音频文件是否自动播放，如果设置了autoplay则音乐在打开页面时就会自动播放，但是目前来讲大部分的浏览器都不会自动对音乐自动播放。<br><strong>loop</strong> （没有值）： 音频文件是否循环播放。</p>
+</blockquote>
+<p>除了使用src来指定外部文件的路径之外，还可以通过<strong>source</strong>来指定文件。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;音频文件存放的路径&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>embed标签</strong>：只在一些老版本的浏览器设置音视频播放，并且自动播放，而且大小要自己设定，不然就是一个小方块。<br><strong>解决浏览器兼容问题的通用方案：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;xxx.mp3&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;xxx.ogg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">&quot;xxx.mp3&quot;</span> <span class="attr">type</span>=<span class="string">&quot;audio/mp3&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300px&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200px&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>video标签：</strong> 向网页中引入视频文件。controls 同样用来控制显示问题，source用来引入资源路径，与audio的操作都基本一致。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;xxx.mp4&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;xxx.webm&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">&quot;xxx.mp4&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/mp4&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300px&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200px&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="以上就是关于HTML基本标签的使用与描述…"><a href="#以上就是关于HTML基本标签的使用与描述…" class="headerlink" title="以上就是关于HTML基本标签的使用与描述…"></a>以上就是关于HTML基本标签的使用与描述…</h3>
       
 
       
@@ -176,7 +279,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		
 		</ul>
@@ -194,6 +297,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/08/15/CSS%E6%A0%B7%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          CSS样式
+        
+      </div>
+    </a>
   
   
     <a href="/2021/08/11/%E5%89%8D%E7%AB%AF%E4%B9%8B%E8%B7%AF/" id="article-nav-older" class="article-nav-link-wrap">
@@ -322,19 +434,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
             <div class="clearfix"></div>
