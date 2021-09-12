@@ -22,10 +22,10 @@
 <meta property="og:image" content="http://example.com/images/126.png">
 <meta property="og:image" content="http://example.com/images/127.png">
 <meta property="article:published_time" content="2021-08-19T01:50:46.000Z">
-<meta property="article:modified_time" content="2021-08-24T08:52:31.099Z">
+<meta property="article:modified_time" content="2021-09-12T01:24:21.841Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="前端">
 <meta property="article:tag" content="CSS">
+<meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/122.png">
   
@@ -226,7 +226,7 @@
 
 <p>我们利用after在box1的末尾添加一个块元素，但是没有任何内容，然后将这个块元素的clear属性设置为both，就解决了由于box2的浮动产生的高度塌陷问题。<br><img src="/images/125.png"></p>
 <p><strong>clearfix 类解决高度塌陷</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clearfix::before,.clearfix::after&#123;</span><br><span class="line">	content: &#x27;&#x27;;</span><br><span class="line">	display: table;</span><br><span class="line">	clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.clearfix::before,</span><br><span class="line">.clearfix::after&#123;</span><br><span class="line">	content: &#x27;&#x27;;</span><br><span class="line">	display: table;</span><br><span class="line">	clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在使用的时候谁塌陷了就添加 clearfix 类即可。</p>
 <h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h4><p>定位是一种更加高级的布局手段，通过定位我们可以将元素拜访在页面的任意位置，使用 position 属性来设置定位。</p>
@@ -280,6 +280,18 @@
 <blockquote>
 <p>① 元素的层级越高越优先显示。<br>② 如果元素的优先级一样，会优先显示靠下的元素。<br>③ 祖先元素的层级在高也不会盖住后代元素。</p>
 </blockquote>
+<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p><strong>背景颜色：background-color 用来设置背景颜色。</strong><br><strong>背景图片：background-image 用来设置背景图片。</strong><br>可以同时设置背景图片和背景颜色，这样背景颜色将会称为图片的背景色。</p>
+<blockquote>
+<p>background-image: url(“图片的路径”);<br>如果背景的图片小于元素，则背景图片会自动在元素中平铺将元素铺满<br>如果背景的图片小于元素，则背景图片会有一部分背景无法完全显示<br>如果背景颜色和元素一样大，则会直接正常显示</p>
+</blockquote>
+<p><strong>background-repeat 用来设置背景的重复方式</strong></p>
+<blockquote>
+<p>可选值：<br>repeat 默认值，背景会沿着 x 轴，y 轴双方向重复<br>repeat-x 沿着 x 轴方向重复<br>repeat-y 沿着 y 轴方向重复<br>no-repeat 背景图片不重复</p>
+</blockquote>
+<p><strong>background-position 用来设置背景图片的位置</strong></p>
+<blockquote>
+<p>设置方式：<br><strong>通过 top ，left ，right ，bottom ，center 几个表示方位的词来设置背景图片的位置</strong>:使用方位词时，必须要同时指定两个值，如果只写一个则第二个默认就是 center。<br><strong>通过偏移量来指定背景图片的位置：</strong><br>水平方向的偏移量  垂直方向的偏移量</p>
+</blockquote>
 
       
 
@@ -293,11 +305,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		
 		</ul>
@@ -452,11 +464,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,6 +493,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,7 +555,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">君无心,害怕自己动了心,三年感情不甘心...</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">好好纪念那几年...</div>
   	  	
     	</section>
     
