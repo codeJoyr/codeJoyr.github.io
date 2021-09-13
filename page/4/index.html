@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>xml创建与解析 | Joyr</title>
+  <title>Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本篇文章主要描述了如何书写xml以及解析xml">
-<meta property="og:type" content="article">
-<meta property="og:title" content="xml创建与解析">
-<meta property="og:url" content="http://example.com/2021/07/20/xml%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%A7%A3%E6%9E%90/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Joyr">
+<meta property="og:url" content="http://example.com/page/4/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="本篇文章主要描述了如何书写xml以及解析xml">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-07-20T01:57:36.000Z">
-<meta property="article:modified_time" content="2021-08-20T02:03:41.825Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="javaweb">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
@@ -143,60 +138,31 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  <article id="post-xml创建与解析" class="article article-type-post " itemscope itemprop="blogPost">
+  
+    <article id="post-代码块" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      xml创建与解析
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/13/%E4%BB%A3%E7%A0%81%E5%9D%97/">代码块</a>
     </h1>
   
 
         
-        <a href="/2021/07/20/xml%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2021-07-20T01:57:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-20</time>
+        <a href="/2021/06/13/%E4%BB%A3%E7%A0%81%E5%9D%97/" class="archive-article-date">
+  	<time datetime="2021-06-13T05:57:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="本篇文章主要描述了如何书写xml以及解析xml"><a href="#本篇文章主要描述了如何书写xml以及解析xml" class="headerlink" title="本篇文章主要描述了如何书写xml以及解析xml"></a>本篇文章主要描述了如何书写xml以及解析xml<span id="more"></span></h4><p><strong>如何书写xml文件</strong></p>
-<blockquote>
-<blockquote>
-<p>XML 元素必须有结束标签<br>XML 元素必须正确的嵌套</p>
-</blockquote>
-</blockquote>
-<p>直接上例子：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">books</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">book</span> <span class="attr">sn</span>=<span class="string">&quot;SN1234123123&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>辟邪剑谱<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">price</span>&gt;</span>9.9<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">author</span>&gt;</span>班主任<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">book</span> <span class="attr">sn</span>=<span class="string">&quot;SN123123123&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>葵花宝典<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">price</span>&gt;</span>99.9<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">author</span>&gt;</span>班长<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">books</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>&lt;?xml version=”1.0” encoding=”UTF-8” ?&gt;<br>这句代码就是标明 xml 的版本号，以及指明 xml 的编码格式，也是xml几乎必备的一段代码！！</p>
-<p>下面就是xml 的书写：</p>
-<p>假设你在图书馆，看见一系列的图书，上面标注着图书的编号，名称，作者，价格等等…</p>
-<p>最外层的标签就是最大的 books  代表着想要存储的多个 book 对象实例</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">books</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">books</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>books 中存在多个 book 对象实例，表示每一个 book 的属性</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">books</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">  <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">books</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>每一个 book 都存在编号，作者，名称，价格</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">books</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">book</span> <span class="attr">sn</span>=<span class="string">&quot;SN1234123123&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>辟邪剑谱<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">price</span>&gt;</span>9.9<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">author</span>&gt;</span>班主任<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">book</span> <span class="attr">sn</span>=<span class="string">&quot;SN123123123&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>葵花宝典<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">price</span>&gt;</span>99.9<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">author</span>&gt;</span>班长<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">books</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>其实 sn 编号属性完全可以当做 book 中的一个属性，但是为了后面的使用 dom4j 进行解析xml文件，我们将其设置为标签中的属性，方便使用其他 API 进行获取。</p>
-<p><strong>XML 文件书写完成后，我们使用 dom4j 进行解析xml文件，生成所对应的bean对象。</strong></p>
-<p>既然我们已经创建了关于 books 的xml文件，为了转换成 bean 对象，我们创建一个 book 的类，方便转换。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String sn;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> String author;</span><br><span class="line">  <span class="keyword">private</span> BigDecimal price;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(String sn, String name, String author, BigDecimal price)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.sn = sn;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.author = author;</span><br><span class="line">    <span class="keyword">this</span>.price = price;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Book&#123;&quot;</span> +</span><br><span class="line">      <span class="string">&quot;sn=&#x27;&quot;</span> + sn + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">      <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">      <span class="string">&quot;, author=&#x27;&quot;</span> + author + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">      <span class="string">&quot;, price=&quot;</span> + price +</span><br><span class="line">      <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getSn</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sn;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSn</span><span class="params">(String sn)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.sn = sn;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getAuthor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> author;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAuthor</span><span class="params">(String author)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.author = author;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> BigDecimal <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> price;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPrice</span><span class="params">(BigDecimal price)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.price = price;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>接着我们使用测试方法，来展示如何使用 dom4j 进行解析 xml 文件，我们将 dom4j 的jar包添加到 module 模块中 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/110JMQDcmu5u7iwkG3miIdA"> 资源( l5c7) </a></p>
-<blockquote>
-<p>步骤：<br>① 创建 SaxReader 输入流去读取 xml 文件，获取 document 对象<br>② 使用 document 对象获取根元素<br>③ 通过根元素获取标签对象<br>④ 遍历，处理每个标签转换成 bean 实例</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="comment">//  使用dom4j解析xml文件成为  bean对象</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">  <span class="comment">//  使用SaxReader输入流读取xml文件获取document对象</span></span><br><span class="line">  SAXReader saxReader = <span class="keyword">new</span> SAXReader();</span><br><span class="line">  Document document = saxReader.read(<span class="string">&quot;src/books.xml&quot;</span>);</span><br><span class="line">  <span class="comment">//  通过document对象获取根元素 (这里也就是 books 标签)</span></span><br><span class="line">  Element rootElement = document.getRootElement();</span><br><span class="line">  <span class="comment">// element() 与 elements() 都是通过标签名查找子元素</span></span><br><span class="line">  List&lt;Element&gt; books = rootElement.elements(<span class="string">&quot;book&quot;</span>);</span><br><span class="line">  <span class="comment">//  通过根元素获取bean对象</span></span><br><span class="line">  <span class="comment">//  遍历每一个book标签</span></span><br><span class="line">  <span class="keyword">for</span>(Element book : books)&#123;</span><br><span class="line">    <span class="comment">//  getText方法可以获取标签中的文本内容</span></span><br><span class="line">    String name = book.element(<span class="string">&quot;name&quot;</span>).getText();</span><br><span class="line">    String author = book.element(<span class="string">&quot;author&quot;</span>).getText();</span><br><span class="line">    String price = book.element(<span class="string">&quot;price&quot;</span>).getText();</span><br><span class="line">    String sn = book.attributeValue(<span class="string">&quot;sn&quot;</span>);</span><br><span class="line">    <span class="comment">//  处理每个标签成为bean对象的属性</span></span><br><span class="line">    Book book1 = <span class="keyword">new</span> Book(sn,name,author,<span class="keyword">new</span> BigDecimal(price));</span><br><span class="line">    System.out.println(book1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">运行结果:</span><br><span class="line">Book&#123;sn=<span class="string">&#x27;SN1234123123&#x27;</span>, name=<span class="string">&#x27;辟邪剑谱&#x27;</span>, author=<span class="string">&#x27;班主任&#x27;</span>, price=<span class="number">9.9</span>&#125;</span><br><span class="line">Book&#123;sn=<span class="string">&#x27;SN123123123&#x27;</span>, name=<span class="string">&#x27;葵花宝典&#x27;</span>, author=<span class="string">&#x27;班长&#x27;</span>, price=<span class="number">99.9</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上就是 xml 文件的书写以及使用 dom4j 解析xml文件的全部内容！！！</p>
-<h3 id="完结撒花🎆"><a href="#完结撒花🎆" class="headerlink" title="完结撒花🎆"></a>完结撒花🎆</h3>
+        <h4 id="这篇文章用来总结代码块的使用"><a href="#这篇文章用来总结代码块的使用" class="headerlink" title="这篇文章用来总结代码块的使用"></a>这篇文章用来总结代码块的使用
+        
+          <a class="article-more-a" href="/2021/06/13/%E4%BB%A3%E7%A0%81%E5%9D%97/#more">more >></a>
+        
       
 
       
@@ -209,7 +175,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">javaweb</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javase</a>
         		</li>
       		
 		</ul>
@@ -218,33 +184,16 @@
       
 
       
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/13/%E4%BB%A3%E7%A0%81%E5%9D%97/">展开全文 >></a>
+        </p>
+      
 
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/07/20/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          进制转换
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/07/18/final%E5%85%B3%E9%94%AE%E5%AD%97/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">final关键字</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -264,14 +213,88 @@
 
 
 
-  
-  
-  
 
   
-
+    <article id="post-创建博客之路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/13/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E8%B7%AF/">创建博客之路</a>
+    </h1>
   
 
+        
+        <a href="/2021/06/13/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E8%B7%AF/" class="archive-article-date">
+  	<time datetime="2021-06-13T05:57:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="因为想记录自己大学的学习过程，所以心血来潮想创建自己的个人博客，所以到处寻找资料……最终也是搭建成功"><a href="#因为想记录自己大学的学习过程，所以心血来潮想创建自己的个人博客，所以到处寻找资料……最终也是搭建成功" class="headerlink" title="因为想记录自己大学的学习过程，所以心血来潮想创建自己的个人博客，所以到处寻找资料……最终也是搭建成功."></a>因为想记录自己大学的学习过程，所以心血来潮想创建自己的个人博客，所以到处寻找资料……
+        
+          <a class="article-more-a" href="/2021/06/13/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E8%B7%AF/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">我的博客创建过程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/13/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%B9%8B%E8%B7%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
   
 
 
@@ -301,8 +324,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
