@@ -16,7 +16,7 @@
 <meta property="og:description" content="本篇文章主要关于css的拓展功能的复习..">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-14T03:16:12.000Z">
-<meta property="article:modified_time" content="2021-09-15T09:27:48.343Z">
+<meta property="article:modified_time" content="2021-09-15T13:09:34.016Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="css">
@@ -252,6 +252,70 @@
 <p><strong>利用缩放实现图片的放大效果</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">      <span class="selector-class">.img-wrapper</span>&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">227px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">180px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">margin</span>: <span class="number">100px</span> auto;</span></span><br><span class="line"><span class="css">        <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span></span><br><span class="line"><span class="css">        <span class="comment">/* 元素放大后会从父元素中出来，就要将溢出的部分隐藏 */</span></span></span><br><span class="line"><span class="css">        <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="css">      &#125;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">img</span>&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">transition</span>: transform .<span class="number">2s</span>;</span></span><br><span class="line"><span class="css">      &#125;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">body</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">img</span>&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1.2</span>);</span></span><br><span class="line"><span class="css">      &#125;</span></span><br><span class="line"><span class="css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;img-wrapper&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 注意使用自己的图片路径 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../exercise/imgs/01/1.png&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<h4 id="弹性盒"><a href="#弹性盒" class="headerlink" title="弹性盒"></a>弹性盒</h4><p><strong>flex 弹性盒：</strong> 是 css 中的有一种布局手段，它<strong>主要用来代替浮动</strong>来完成页面的布局。flex 可以使元素具有弹性，让元素可以跟随页面的大小的改变而改变。</p>
+<p><strong>弹性容器</strong><br>要使用弹性盒，必须先将一个元素设置为弹性容器，我们通过 display 来设置弹性容器。</p>
+<blockquote>
+<p><strong>display: flex</strong> 设置为块级弹性容器<br><strong>display: inline-flex</strong> 设置为行内的弹性容器</p>
+</blockquote>
+<p><strong>弹性元素</strong><br>弹性容器的子元素是弹性元素（弹性项），一个元素可以同时是弹性容器和弹性元素。</p>
+<p><strong>弹性元素的属性：</strong></p>
+<blockquote>
+<p><strong>flex-grew</strong> 指定弹性元素的伸展系数</p>
+<blockquote>
+<p>当父元素有多余的空间时，子元素如何伸展<br>指定了值后会根据父元素的剩余空间，按照比例进行分配</p>
+</blockquote>
+<p><strong>flex-shrink</strong> 指定弹性元素的收缩系数</p>
+<blockquote>
+<p>当父元素中的空间不足以容纳所有的子元素时，就会对子元素进行收缩，</p>
+</blockquote>
+</blockquote>
+<p><strong>flex-direction 指定容器中弹性元素的排列方式</strong></p>
+<blockquote>
+<p>可选值：<br><strong>row</strong> 默认值，弹性元素在容器中水平排列（左向右）</p>
+<blockquote>
+<p>主轴自左向右</p>
+</blockquote>
+<p><strong>row-reverse</strong> 弹性元素在容器中泛型水平排列（右向左）</p>
+<blockquote>
+<p>主轴自右向左</p>
+</blockquote>
+<p><strong>column</strong> 弹性元素纵向排列（上向下）</p>
+<blockquote>
+<p>主轴自上向下</p>
+</blockquote>
+<p><strong>column-reverse</strong> 弹性元素纵向排列（上向下）</p>
+<blockquote>
+<p>主轴自下向上</p>
+</blockquote>
+</blockquote>
+<p><strong>主轴</strong>：弹性元素的排列方向称为主轴。<br><strong>侧轴：</strong> 与主轴垂直方向的称为侧轴。</p>
+<p><strong>弹性容器的样式</strong></p>
+<p><strong>flex-wrap</strong> 设置弹性元素是否在弹性容器中自动换行</p>
+<blockquote>
+<p>可选值：<br><strong>nowrap</strong> 默认值，元素不会自动换行<br><strong>wrap</strong> 元素沿着辅轴方向自动换行<br><strong>wrap-reverse</strong> 元素沿着辅轴反方向换行</p>
+</blockquote>
+<p><strong>flex-flow</strong> wrap 和 direction 的简写属性</p>
+<blockquote>
+<p>语法：<br>flex-flow: row wrap;</p>
+</blockquote>
+<p><strong>justify-content</strong> 如何分配主轴上的空白空间（主轴上的元素如何排列）</p>
+<blockquote>
+<p>可选值：<br><strong>flex-start</strong> 元素沿着主轴起边排列<br><strong>flex-end</strong> 元素沿着主轴终边排列<br><strong>center</strong> 元素居中排列<br><strong>space-around</strong> 空白分布到元素两侧<br><strong>space-between</strong> 空白均匀分布到元素之间<br><strong>space-evenly</strong> 空白分布到元素的单侧</p>
+</blockquote>
+<p><strong>align-items</strong> 元素在辅轴上如何对齐，设置元素之间的关系</p>
+<blockquote>
+<p>可选值：<br><strong>stretch</strong> 默认值，将元素的长度设置为相同的值<br><strong>flex-start</strong> 元素不会拉伸，沿着辅轴起边对齐<br><strong>flex-end</strong> 沿着辅轴的终边对齐<br><strong>center</strong> 居中对齐<br><strong>baseline</strong> 基线对齐</p>
+</blockquote>
+<p><strong>align-content</strong> 辅轴空白空间的分布，与上面使用一致。</p>
+<p><strong>align-self</strong> 用来覆盖当前弹性元素上的 align-items ，可以指定自己单独的排列方式。</p>
+<p><strong>弹性元素的样式</strong></p>
+<p><strong>flex-grew</strong> 弹性的增长系数，各个弹性元素按照增长系数的比例来分配父元素的空白空间。</p>
+<p><strong>flex-shrink</strong> 弹性的缩减系数，缩减多少是根据 <strong>缩减系数</strong> 和 <strong>元素大小</strong> 同时来计算的。</p>
+<p><strong>flex-basis</strong> 元素的基础长度，指定的是元素在主轴上的基础长度，如果主轴是横向的，则该值指定的是元素的宽度，如果主轴是纵向的，则该值指定的就是元素的高度。<strong>默认值是 auto ，表示参考元素自身的高度或者宽度。</strong></p>
+<p><strong>flex</strong> 可以设置弹性元素的所有三个样式</p>
+<blockquote>
+<p><strong>flex 增长 缩减 基础;</strong><br><strong>initial</strong>： flex: 0 1 auto;<br><strong>auto</strong>: flex: 1 1 auto;<br><strong>none</strong>: flex: 0 0 auto; 将弹性元素设置为没有弹性</p>
+</blockquote>
 
       
 
