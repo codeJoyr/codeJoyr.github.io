@@ -6,23 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>数组模拟环形队列 | Joyr</title>
+  <title>Tag: ajax | Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这篇文章主要关于数组是如何实现环形队列…">
-<meta property="og:type" content="article">
-<meta property="og:title" content="数组模拟环形队列">
-<meta property="og:url" content="http://example.com/2021/06/22/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E7%8E%AF%E5%BD%A2%E9%98%9F%E5%88%97/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Joyr">
+<meta property="og:url" content="http://example.com/tags/ajax/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="这篇文章主要关于数组是如何实现环形队列…">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/11.png">
-<meta property="article:published_time" content="2021-06-22T08:09:41.000Z">
-<meta property="article:modified_time" content="2021-08-30T08:33:32.318Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="数据结构">
-<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/11.png">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
   
@@ -146,146 +138,63 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  <article id="post-数组模拟环形队列" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 class="article-title" itemprop="name">
-      数组模拟环形队列
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/09/30/ajax/" class="archive-article-date">
+  	<time datetime="2021-09-30T04:45:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-30</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/09/30/ajax/">AJAX</a>
     </h1>
   
 
-        
-        <a href="/2021/06/22/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E7%8E%AF%E5%BD%A2%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2021-06-22T08:09:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="这篇文章主要关于数组是如何实现环形队列…"><a href="#这篇文章主要关于数组是如何实现环形队列…" class="headerlink" title="这篇文章主要关于数组是如何实现环形队列…"></a>这篇文章主要关于数组是如何实现环形队列…<span id="more"></span></h4><p><strong>队列的基本概念</strong> </p>
-<blockquote>
-<blockquote>
-<p>队列是一种先进先出的线性表，它只允许在表的一端进行插入，而在另一端进行删除，向队列中插入元素称为入队，从队列中删除元素称为出队.<br>队首：允许进行删除的一端称为队首.<br>队尾：允许进行插入的一端称为队尾.<br>队列的长度：队列中数据元素的个数表示队列的长度.<br>空队列：当队列中没有元素时称为空队列.</p>
-</blockquote>
-</blockquote>
-<p>首先队列的操作有： 添加元素到队列（入列），取出元素从队列（出列），获取队列的长度，获取队列中元素的个数，显示队列头元素，判断队列是否已满、是否为空…<br><strong>首先分析CircleQueue类中的这几个属性</strong><br>front： 指向队列的第一个元素，也就是说arr[front]就是队列的第一个元素，初始化为0。<br>rear：指向队列的最后一个元素的后一个位置，也就是说需要空出一个空间作为约定，初始化为0。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> maxSize; <span class="comment">// 队列的最大容量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> front; <span class="comment">//  队列的头指针</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> rear;  <span class="comment">//  队列的尾指针</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] arr; <span class="comment">// 队列所对应的数组</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>其次就是构造器</strong><br>这里仅将maxSize确定下来，设置为数组的最大容量.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  队列的构造器，确定该队列的最大容量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CircleQueue</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.maxSize = maxSize;</span><br><span class="line">        arr = <span class="keyword">new</span> <span class="keyword">int</span>[maxSize];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>再来看看这其中最重要的方法</strong><br><strong>boolean isFull(){ } 判断队列是否已满</strong><br>  上面说了队列拥有头指针与尾指针，我们想用数组实现环形队列需要注意，我这里留出了一个空位作为约定，也就是说当 front == (rear + 1) % maxSize 就视为已满，下图用来解释这句话，下面两幅图代表队列已满。<br><img src="/images/11.png"><br>当 <em><strong>(rear + 1)%maxSize == front;  ☆</strong></em>  时队列视为已满。这里需要一点思维量，根据上面的图，想一想为什么这种情况下队列已满。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断队列是否已满</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFull</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> (rear + <span class="number">1</span>) % maxSize == front;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>boolean isEmpty(){ } 判断队列是否为空</strong><br>   经过上面的讲述，由于留出了一个空位作为约定，所以一旦向队列中添加元素，rear 与 front 一定不相等，所以判断队列是否为空的条件就是 <em><strong>rear == front</strong></em>.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断队列是否为空</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">//如果头指针与尾指针还相等，证明头指针与尾指针仍然指向队列头的前一个位置</span></span><br><span class="line">       <span class="keyword">return</span> rear == front;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>public void addQueue(int n){ } 向队列中添加元素</strong><br>  向队列中添加元素的思路:<br>① 判断队列是否已满<br>② 如果没满，添加元素<br>③ 添加完元素，调整 rear 尾指针的索引位置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加元素到队尾</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addQueue</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// 如果队列已满，无法添加</span></span><br><span class="line">       <span class="keyword">if</span> (isFull()) &#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;队列已满，无法添加.&quot;</span>);</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       arr[rear] = num;</span><br><span class="line">       rear = (rear + <span class="number">1</span>) % maxSize;</span><br><span class="line">       System.out.println(<span class="string">&quot;添加成功。&quot;</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>public int getQueue(){ } 取出数据从队列</strong><br>  向队列中去除数据的思路：<br>① 判断队列是否为空<br>② 如果不为空，将front索引对应的位置去除<br>③ 将front后移</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取队列的元素，出队列</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;队列为空，无法出列.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//  先将头指针后移一位，因为头指针在这种情况下永远在队列首元素的前一个位置</span></span><br><span class="line">        <span class="keyword">int</span> n = arr[front];</span><br><span class="line">        front = (front + <span class="number">1</span>) % maxSize;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>public int getTotal(){ } 获取队列中已存在的元素个数</strong><br>结论: total = (rear - front + maxSize) % maxSize;<br>简单的解释一下：在留出一个空间作为约定的情况下，rear = front的情况下只能是空队列。<br>当 rear &gt;  front 时，total = rear - front;<br>当rear  =  front时，total = 0；<br>当 rear &lt;  front 时，total = rear - front + maxSize;<br>那么将这三种方式合并之后得到一个通用的表达式就是 <strong>total = (rear - front + maxSize) % maxSize;</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取队列中元素的个数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotal</span><span class="params">()</span></span>&#123;</span><br><span class="line">  	<span class="keyword">return</span> (rear - front + maxSize) % maxSize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>public void showQueue() { } 对队列进行遍历操作</strong>获取了队列的个数，相比进行遍历也不是难事，话不多说，直接上代码！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  展示所有的队列元素</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;队列为空，无法遍历。&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = front; i &lt; front + (rear + maxSize - front) % maxSize; i++) &#123;</span><br><span class="line">            System.out.printf(<span class="string">&quot;arr[%d] = %d\n&quot;</span>, i % maxSize, arr[i % maxSize]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>public int headQueue() { } 获取队列的首元素</strong><br>向获得队列的头元素，只需要获得front指向的元素即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示队列头元素，不是取出</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">headQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;队列为空，无法遍历。&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> arr[front];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="下面来演示一下数组是如何实现循环队列的："><a href="#下面来演示一下数组是如何实现循环队列的：" class="headerlink" title="下面来演示一下数组是如何实现循环队列的："></a>下面来演示一下数组是如何实现循环队列的：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CircleQueue queue = <span class="keyword">new</span> CircleQueue(<span class="number">4</span>);</span><br><span class="line">        <span class="keyword">char</span> key = <span class="string">&#x27; &#x27;</span>; <span class="comment">// 接受用户的输入</span></span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">boolean</span> loop = <span class="keyword">true</span>;</span><br><span class="line">        <span class="comment">// 输出一个菜单</span></span><br><span class="line">        <span class="keyword">while</span> (loop) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;s(show)：显示队列&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;e(exit)：退出队列&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;a(add)：添加数据到队列&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;g(get):从队列中取出数据&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;h(head)：查看队列头的数据&quot;</span>);</span><br><span class="line">            key = scan.next().charAt(<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">switch</span> (key) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span>:</span><br><span class="line">                    queue.showQueue();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span>:</span><br><span class="line">                    <span class="keyword">int</span> num = scan.nextInt();</span><br><span class="line">                    queue.addQueue(num);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;g&#x27;</span>:</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="keyword">int</span> res = queue.getQueue();</span><br><span class="line">                        System.out.println(<span class="string">&quot;取出的数据为：&quot;</span> + res);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        System.out.println(e.getMessage());</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;h&#x27;</span>:</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="keyword">int</span> res = queue.headQueue();</span><br><span class="line">                        System.out.println(<span class="string">&quot;队列头的数据为：&quot;</span> + res);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        System.out.println(e.getMessage());</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;e&#x27;</span>:</span><br><span class="line">                    System.out.print(<span class="string">&quot;确认是否退出？(y/n)&quot;</span>);</span><br><span class="line">                    <span class="keyword">char</span> yn = scan.next().charAt(<span class="number">0</span>);</span><br><span class="line">                    <span class="keyword">if</span> (yn == <span class="string">&#x27;y&#x27;</span>) &#123;</span><br><span class="line">                        loop = <span class="keyword">false</span>;</span><br><span class="line">                      	System.out.print(<span class="string">&quot;程序结束！ see you ~~&quot;</span>);</span><br><span class="line">                        scan.close();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">程序的运行结果：</span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">s</span><br><span class="line">队列为空，无法遍历。</span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">a</span><br><span class="line"><span class="number">10</span></span><br><span class="line">添加成功。</span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">a</span><br><span class="line"><span class="number">20</span></span><br><span class="line">添加成功。</span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">a</span><br><span class="line"><span class="number">30</span></span><br><span class="line">添加成功。</span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">a</span><br><span class="line"><span class="number">40</span></span><br><span class="line">队列已满，无法添加.</span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">s</span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">10</span></span><br><span class="line">arr[<span class="number">1</span>] = <span class="number">20</span></span><br><span class="line">arr[<span class="number">2</span>] = <span class="number">30</span></span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">g</span><br><span class="line">取出的数据为：<span class="number">10</span></span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">a</span><br><span class="line"><span class="number">12</span></span><br><span class="line">添加成功。</span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">s</span><br><span class="line">arr[<span class="number">1</span>] = <span class="number">20</span></span><br><span class="line">arr[<span class="number">2</span>] = <span class="number">30</span></span><br><span class="line">arr[<span class="number">3</span>] = <span class="number">12</span></span><br><span class="line">s(show)：显示队列</span><br><span class="line">e(exit)：退出队列</span><br><span class="line">a(add)：添加数据到队列</span><br><span class="line">g(get):从队列中取出数据</span><br><span class="line">h(head)：查看队列头的数据</span><br><span class="line">e</span><br><span class="line">确认是否退出？(y/n) y</span><br><span class="line">程序结束！ see you ~~</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/06/23/java%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java开发环境搭建
-        
-      </div>
-    </a>
   
   
-    <a href="/2021/06/20/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">稀疏数组</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -315,9 +224,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
