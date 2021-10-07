@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://example.com/images/187.png">
 <meta property="og:image" content="http://example.com/images/188.png">
 <meta property="article:published_time" content="2021-09-16T03:55:43.000Z">
-<meta property="article:modified_time" content="2021-10-07T02:38:39.122Z">
+<meta property="article:modified_time" content="2021-10-07T04:55:14.618Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="jQuery">
@@ -290,21 +290,32 @@
 </blockquote>
 <p><strong>类操作与className的区别</strong><br>原生 JS 中的 className 会覆盖元素原先里面的类名， jquery里面类操作只是对指定类进行操作，不会影响原先的类名。</p>
 <h4 id="jQuery-效果"><a href="#jQuery-效果" class="headerlink" title="jQuery 效果"></a>jQuery 效果</h4><blockquote>
-<p><strong>显示隐藏</strong></p>
+<p><strong>显示隐藏</strong> （一般情况下，我们都不加参数直接显示隐藏就可以了）</p>
 <blockquote>
-<p>show( )<br>hide( )<br>toggle( )</p>
+<p>show( <strong>[speed, [easing], [fn]]</strong> )</p>
+<blockquote>
+<p><strong>参数</strong><br>① 参数都可以省略，无动画直接显示<br>② speed：三种预定速度之一的字符串（”slow”, “normal”, or “fast”）或表示动画时长的毫秒数值（如：1000）<br>③ fn：在动画完成时执行的函数，每个元素执行一次</p>
+</blockquote>
+<p>hide( <strong>[speed, [easing], [fn]]</strong> )</p>
+<p>toggle( <strong>[speed, [easing], [fn]]</strong> )</p>
 </blockquote>
 <p><strong>滑动</strong></p>
 <blockquote>
-<p>slideDown( )<br>slideUp( )<br>slideToggle( )</p>
+<p>slideDown( <strong>[speed, [easing], [fn]]</strong> )<br>slideUp( <strong>[speed, [easing], [fn]]</strong> )<br>slideToggle( <strong>[speed, [easing], [fn]]</strong> )</p>
 </blockquote>
 <p><strong>淡入淡出</strong></p>
 <blockquote>
-<p>fadeln( )<br>fadeout( )<br>fadeToggle( )<br>fadeTo( )  修改透明度 fadeTo( ) 这个速度和透明度必须写</p>
+<p>fadeln( <strong>[speed, [easing], [fn]]</strong> )<br>fadeout( <strong>[speed, [easing], [fn]]</strong> )<br>fadeToggle( <strong>[speed, [easing], [fn]]</strong> )<br>fadeTo( <strong>[speed, opacity, [easing], [fn]]</strong> )  修改透明度</p>
+<blockquote>
+<p><strong>opacity 透明度必须写</strong>，取值 0~1 之间<br><strong>speed</strong> 三种预定速度之一的字符串（“slow”， “normal”，or “fast”）或表示动画时长的毫秒数值（如：1000），<strong>必须写</strong></p>
+</blockquote>
 </blockquote>
 <p><strong>自定义动画</strong></p>
 <blockquote>
-<p>animate( )</p>
+<p>animate( <strong>params, [speed], [easing], [fn]</strong> )</p>
+<blockquote>
+<p>params: 想要更改的样式属性，以对象形式传递，必须写。属性名可以不用带引号，如果是复合属性则需要采取驼峰命名法。<br>其余参数可以省略。</p>
+</blockquote>
 </blockquote>
 </blockquote>
 
@@ -483,11 +494,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color2">Bootstrap框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Bootstrap框架</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -503,11 +514,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color2">javase</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">javase</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,7 +597,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">希望收到一束花...</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">希望我们能在芸芸众生中脱颖而出!</div>
   	  	
     	</section>
     
