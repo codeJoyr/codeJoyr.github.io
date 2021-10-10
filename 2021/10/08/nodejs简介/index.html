@@ -17,9 +17,8 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/231.png">
 <meta property="article:published_time" content="2021-10-08T11:42:16.000Z">
-<meta property="article:modified_time" content="2021-10-09T07:51:02.867Z">
+<meta property="article:modified_time" content="2021-10-09T23:48:06.028Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="前端">
 <meta property="article:tag" content="nodejs">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/231.png">
@@ -281,6 +280,8 @@
 <p><strong>cnpm安装</strong><br>由于 npm 的服务器在国外，国内连接很不稳定，所以淘宝出了 npm 的镜像服务器，供国内使用。<br>所以我们就可以使用国内定制的 cnpm 命令行工具代替 npm，这样的好处就是我们既可以使用 npm 也可以使用 cnpm。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
 
+<p><strong>npm搜索包的流程</strong><br>通过 npm 下载的包都放到 node_modules 文件夹中，我们通过 npm 下载的包直接通过包名引入即可。</p>
+<p>node 在使用模块的标识来引入模块时，他会首先在当前目录的 node_modules 中寻找是否含有该模块，如果有则直接使用，如果没有则去上一级目录的 node_modules 中寻找，如果有则直接使用，如果没有则再去上一级目录中寻找，直到找到为止，直到找到了磁盘的根目录，如果依然没有则报错。</p>
 
       
 
@@ -293,10 +294,6 @@
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">nodejs</a>
         		</li>
@@ -327,8 +324,8 @@
     </a>
   
   
-    <a href="/2021/10/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">计算机组成(1)</div>
+    <a href="/2021/10/03/Bootstrap%E6%A1%86%E6%9E%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bootstrap框架</div>
       <i class="icon-circle-right"></i>
     </a>
   
