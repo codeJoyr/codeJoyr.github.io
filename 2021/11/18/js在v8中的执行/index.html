@@ -21,8 +21,10 @@
 <meta property="og:image" content="http://example.com/images/251.png">
 <meta property="og:image" content="http://example.com/images/252.png">
 <meta property="og:image" content="http://example.com/images/253.png">
+<meta property="og:image" content="http://example.com/images/254.png">
+<meta property="og:image" content="http://example.com/images/253.png">
 <meta property="article:published_time" content="2021-11-18T01:28:36.000Z">
-<meta property="article:modified_time" content="2021-11-18T03:19:06.314Z">
+<meta property="article:modified_time" content="2021-11-18T03:41:57.646Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
@@ -178,11 +180,16 @@
 <p><strong>一切都准备好了就会开始执行代码：</strong><br><img src="/images/250.png"></p>
 <p>当我们在执行 var name = ‘joyr’ 的时候，就会在 VO 中寻找 name 的属性，并将其修改为 joyr，后面的执行步骤也皆如此。<br><img src="/images/251.png"></p>
 <p>那么如果我在第二行的时候执行 console.log(num1)，就会去 VO 中查找 num1 属性，此时 num1 = undefined ，所以会输出 undefined，这就是所谓的<strong>作用域提升</strong>。</p>
-<h3 id="全局代码执行过程（函数）"><a href="#全局代码执行过程（函数）" class="headerlink" title="全局代码执行过程（函数）"></a>全局代码执行过程（函数）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;joyr&#x27;</span></span><br><span class="line">foo() <span class="comment">// foo</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="全局代码执行过程（函数）"><a href="#全局代码执行过程（函数）" class="headerlink" title="全局代码执行过程（函数）"></a>全局代码执行过程（函数）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;joyr&#x27;</span></span><br><span class="line">foo() <span class="comment">// foo</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> num1 = <span class="number">10</span></span><br><span class="line">  <span class="keyword">var</span> num2 = <span class="number">10</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>这段代码在编译阶段所执行的操作为：</strong><br><img src="/images/252.png"></p>
 <p>当我们在编译阶段遇到了函数，我们就会在堆空间中创建一个函数对象，并且在其空间中创建一个 [[scope]]: parent scope =&gt; 这个对应的是父级作用域，也就是全局的作用域 VO , 其次就是保存函数的执行体,也就是代码块。<br>在完成这两个步骤之后就会将这个函数对象的地址赋予给GO中的 foo 变量，使得 foo 指向新创建的函数对象。</p>
-<p><strong>但我们在执行代码时：</strong><br>我们在第一行还是声明变量进行赋值，和上面描述的一致，到了第二行，我们调用了 foo( ) ，就会在 VO 也就是 GO 中寻找 foo 函数，然后一路找到目标地址为 0x1010 的空间执行代码。<br><img src="/images/253.png"></p>
+<p><strong>但我们在执行代码时：</strong><br>我们在第一行还是声明变量进行赋值，和上面描述的一致，到了第二行，我们调用了 foo( ) ，就会在 VO 也就是 GO 中寻找 foo 函数，然后一路找到目标地址为 0x1010 的空间。</p>
+<img src="/images/253.png">
+
+<p>找到了函数空间，就会将其压入 ECStack 中，然后在 ECStack 中创建一个<strong>函数执行上下文FEC</strong>（Function Execution Context）,然后在其中创建一个 VO ，指向 AO 对象（Activation Object），这个对象中用于保存函数中的局部变量保存到这个AO对象中。<br><strong>当 AO 一系列操作完成之后</strong>，就会开始执行代码，将 num1 和 num2 进行赋值<br><img src="/images/254.png"></p>
+<p><strong>当 foo 函数执行完毕之后</strong>，FEC 就会从栈中弹出,进行销毁，如果上面过程中，没有保存过 AO 的指针，则 AO 也会被销毁，这里涉及内存管理，不多说。<br><img src="/images/253.png"></p>
+<p>如果在以后还需要调用 foo 函数，则执行的过程与上述一致，这就是<strong>函数的作用域提升</strong>。</p>
 
       
 
