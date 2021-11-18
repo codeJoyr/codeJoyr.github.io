@@ -18,10 +18,14 @@
 <meta property="og:image" content="http://example.com/images/239.jpg">
 <meta property="og:image" content="http://example.com/images/240.jpg">
 <meta property="og:image" content="http://example.com/images/241.jpg">
+<meta property="og:image" content="http://example.com/images/247.png">
+<meta property="og:image" content="http://example.com/images/244.png">
 <meta property="og:image" content="http://example.com/images/242.jpg">
 <meta property="og:image" content="http://example.com/images/243.jpg">
+<meta property="og:image" content="http://example.com/images/245.png">
+<meta property="og:image" content="http://example.com/images/246.png">
 <meta property="article:published_time" content="2021-11-17T02:33:45.000Z">
-<meta property="article:modified_time" content="2021-11-17T12:59:59.953Z">
+<meta property="article:modified_time" content="2021-11-18T01:28:10.398Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
@@ -189,16 +193,64 @@
 <p><strong>V8引擎</strong>：Google开发的强大的JavaScript引擎，帮助Chrome从中多浏览器中脱颖而出。</p>
 <h4 id="V8引擎的原理"><a href="#V8引擎的原理" class="headerlink" title="V8引擎的原理"></a>V8引擎的原理</h4><img src="/images/241.jpg">
 
+<p><strong>V8 引擎的解析图（官方）</strong><br><img src="/images/247.png"></p>
+<p><strong>逐级拆解①</strong><br><img src="/images/244.png"></p>
 <p>上图中的 Parse 是很复杂的一个事件，包括 词法分析和语法分析 ，然后将其转换为 AST抽象语法树。</p>
 <p><strong>词法分析</strong>：就是将程序源代码分解成对编程语言来说有意义的代码块，这些代码块被称为<strong>词法单元(token)</strong></p>
 <p><strong>实例：const name = ‘joyr’ 会被如何分解？</strong><br><img src="/images/242.jpg"></p>
 <p>我们从上图可以看到，这段代码被分解出来了四个token：</p>
 <blockquote>
-<p>const 关键字<br>name 标识符<br>= 运算符<br>joy 数值</p>
+<p><strong>const</strong> 关键字</p>
+<blockquote>
+<p>“type”: “Keyword” =&gt; 关键字<br>“value”: “const” =&gt; const</p>
+</blockquote>
+<p><strong>name</strong> 标志符</p>
+<blockquote>
+<p>“type”: “Identifier” =&gt; 标志符<br>“value”: “name” =&gt; name</p>
+</blockquote>
+<p><strong>=</strong> 运算符</p>
+<blockquote>
+<p>“type”: “Punctuator” =&gt; 标点符号<br>“value”: “=”  =&gt; =</p>
+</blockquote>
+<p><strong>joy</strong> 数值</p>
+<blockquote>
+<p>“type”: “String” =&gt; 字符串<br>“value”: “‘joy’” =&gt; joy</p>
+</blockquote>
 </blockquote>
 <p><strong>语法分析(Parser)</strong> ：Parser 是V8的解析器，负责根据生成的 tokens 进行语法分析</p>
+<p><strong>PreParser</strong>：预解析，又称为延迟解析，它只解析<strong>未被立即执行</strong>的代码（如函数），不生成 AST ，只确定作用域，以此来提高性能，当预解析后的代码开始执行时，才进行 Parser 解析。<br><strong>什么是预解析？</strong> 看如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，如果我们使用了 Parser ,会生成 foo 函数和 bar 函数的AST，但是 bar 函数并没有被调用，所以生成的 bar 函数的AST实际上是没有任何意义的,这就可以用到 PreParser了。再看如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">inner</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;)()</span><br><span class="line">outer()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>① 当V8引擎遇到 outer 函数与 inner 函数声明时，发现它未被立即执行，就采用 PreParser 对其进行预解析<br>② 当 V8 遇到了(bar( ))( ) 时，就会知道这是一个立即执行表达式，所以就采用 PreParser 对齐解析<br>③ 当 outer( ) 函数被调用的时候，会采用 Parser 对 foo 函数进行解析,此时 inner 函数会再次进行预解析,以此可以得出如果函数的嵌套层级过深,就会导致执行多次预解析,从而影响性能.</p>
+</blockquote>
 <p><strong>Parser 的主要任务</strong>：① 分析语法错误 ② 输出AST抽象语法树 ③ 确定词法作用域</p>
 <p>来看上述代码生成的 AST 抽象语法树：<br><img src="/images/243.jpg"></p>
+<p><strong>逐级拆解②</strong><br><img src="/images/245.png"></p>
+<p>经过了词法分析与语法分析就可以拿到抽象语法树，有了抽象语法树之后就可以转换成es5的代码，也可以通过 <strong>Ignition</strong> 这个库将其转换成 bytecode 字节码文件。</p>
+<p><strong>那为什么不直接将 AST 转换成可以直接在计算机中执行的二进制代码呢?</strong><br>因为 JS 代码不知道会运行在什么环境上面，而不同的环境却拥有不同的CPU，不同的CPU架构所指定的机器指令是不同的，所以就直接转换成了字节码，可以跨平台，在各个系统中都可以转换成相对应平台的CPU指令。</p>
+<p><strong>逐级拆解③</strong><br><img src="/images/246.png"></p>
+<p>现在来分析一个问题：如果我每次想执行代码都需要将字节码转换成想对应的二进制代码，这是一件很浪费性能和时间的事。</p>
+<p>有了这个思考，我们就可以尝试将字节码直接变成对应平台的二进制代码：<br>假设我们定义一个函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;joyr&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码在程序中是一成不变的，如果我们需要重复执行多次，直接将其转换成对应的机器码，我们就可以省去之前的转码过程，性能肯定是提升的。</p>
+<p><strong>TurboFan库</strong>：可以通过 <strong>Ignition</strong> 进行收集信息，将执行频率较高的函数标记成 <strong>hot</strong> =&gt; 即热函数，我们就可以将其转换成对应的机器码直接进行执行。 </p>
+<p>我们再次定义一个函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">num1, num2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们进行调用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum(<span class="number">500</span>, <span class="number">20</span>) =&gt; <span class="number">520</span></span><br><span class="line">sum(<span class="number">1000</span>, <span class="number">314</span>) =&gt; <span class="number">1314</span></span><br></pre></td></tr></table></figure>
+
+<p>这种情况下是没有任何问题的，但是因为js不存在类型检测，我们像下面传入参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>) =&gt; helloworld</span><br></pre></td></tr></table></figure>
+
+<p>这时候显然我们使用之前的机器码的本意并不是进行字符串拼接，所以我们在执行对应的 CPU 指令的时候，就无法使用，然而在 V8 引擎中存在 <strong>Deoptimization</strong> ，一旦我发现我在执行已经就绪的机器指令的时候，操作发生了变化，它就会将这次对应的机器指令回头转换成字节码再运行。</p>
+<p>经过了上述陈述，我们可以发现，如果我们在函数中传递参数的时候保证了类型，对性能的提升是很有帮助的！（所以 ts =&gt; js 是可以很有效的提升性能的，因为 ts 存在类型限制）</p>
+<p> <strong>以上就是 V8 引擎的概述！</strong></p>
 
       
 
@@ -285,6 +337,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/11/18/js%E5%9C%A8v8%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          js在v8中的执行
+        
+      </div>
+    </a>
   
   
     <a href="/2021/10/10/nodejs%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" id="article-nav-older" class="article-nav-link-wrap">
@@ -426,7 +487,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">javase</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -497,7 +558,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">与这肮脏的世界分蛋糕是活着的唯一乐趣！</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">我是傻子，没有心眼，要啥拿啥，给啥要啥~</div>
   	  	
     	</section>
     
