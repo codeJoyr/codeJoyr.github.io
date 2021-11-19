@@ -6,24 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>BOM模型 | Joyr</title>
+  <title>JS闭包 | Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本篇文章主要关于浏览器对象模型的概述…">
+  <meta name="description" content="关于闭包…">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BOM模型">
-<meta property="og:url" content="http://example.com/2021/09/20/BOM%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:title" content="JS闭包">
+<meta property="og:url" content="http://example.com/2021/11/19/JS%E9%97%AD%E5%8C%85/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="本篇文章主要关于浏览器对象模型的概述…">
+<meta property="og:description" content="关于闭包…">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/207.png">
-<meta property="og:image" content="http://example.com/images/208.png">
-<meta property="article:published_time" content="2021-09-20T11:32:46.000Z">
-<meta property="article:modified_time" content="2021-09-21T05:20:14.302Z">
+<meta property="article:published_time" content="2021-11-19T00:30:33.000Z">
+<meta property="article:modified_time" content="2021-11-19T00:31:52.744Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/207.png">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
   
@@ -141,119 +138,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-BOM模型" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JS闭包" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      BOM模型
+      JS闭包
     </h1>
   
 
         
-        <a href="/2021/09/20/BOM%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-09-20T11:32:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-20</time>
+        <a href="/2021/11/19/JS%E9%97%AD%E5%8C%85/" class="archive-article-date">
+  	<time datetime="2021-11-19T00:30:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="本篇文章主要关于浏览器对象模型的概述…"><a href="#本篇文章主要关于浏览器对象模型的概述…" class="headerlink" title="本篇文章主要关于浏览器对象模型的概述…"></a>本篇文章主要关于浏览器对象模型的概述…<span id="more"></span></h4><h4 id="BOM-浏览器对象模型"><a href="#BOM-浏览器对象模型" class="headerlink" title="BOM 浏览器对象模型"></a>BOM 浏览器对象模型</h4><p>BOM 可以使我们通过 JS 来操作浏览器，在 BOM 中为我们提供了一组对象，用来完成对浏览器的操作。</p>
-<p><strong>BOM 对象</strong></p>
-<blockquote>
-<p><strong>Window</strong>：代表整个浏览器的窗口，同时 window 也是网页中的全局对象。<br><strong>Navigator</strong> ：代表的当前浏览器的信息，通过该对象可以识别不同的浏览器。<br><strong>Location</strong>：代表当前浏览器的地址栏信息，通过 location 可以获取地址栏信息，或者操作浏览器跳转页面。<br><strong>History</strong>：代表浏览器的历史记录，可以通过对象来操作浏览器的历史记录。由于隐私的原因，该对象不能获取到具体的历史记录，只能操作浏览器向前或向后翻页，而且该操作只在当次访问时有效。<br><strong>Screen</strong>：代表用户的屏幕的信息，通过该对象可以获取到用户的显示器的相关信息。</p>
-</blockquote>
-<p>这些 BOM 对象在浏览器中都是作为 window 对象的属性来保存的，可以通过 window 对象来使用，也可以直接使用。</p>
-<p><strong>Navigator</strong> </p>
-<blockquote>
-<p>代表的当前浏览器的信息，通过该对象可以用来识别不同的浏览器。<br>由于历史原因，Navigator 对象中的大部分属性都已经不能帮助我们识别浏览器了。<br>一般我们只会使用 <strong>userAgent（等价于浏览器）</strong> 来判断浏览器的信息。</p>
-<blockquote>
-<p>userAgent 是一个字符串，这个字符串中包含有用来描述浏览器信息的内容，不同的浏览器有不同的 userAgent 。</p>
-<blockquote>
-<p><strong>chrome的userAgent</strong><br>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) <strong>Chrome</strong>/93.0.4577.63 Safari/537.36</p>
-<p><strong>火狐的userAgent</strong><br>Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 <strong>Firefox</strong>/92.0</p>
-<p><strong>Safari的userAgent</strong><br>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 <strong>Safari</strong>/605.1.15</p>
-<p><strong>IE8</strong><br>Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)</p>
-<p><strong>IE9</strong><br>Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)</p>
-<p><strong>IE10</strong><br>Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)</p>
-<p><strong>IE11</strong><br>Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko</p>
-<p><strong>在IE11中已经将微软和IE相关的标识都已经去除了，所以我们基本已经不能通过UserAgent来识别一个浏览器是否是IE了</strong></p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p><strong>判断浏览器类型</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">      <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> ua = navigator.userAgent;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(<span class="regexp">/firefox/i</span>.test(ua))&#123;</span></span><br><span class="line"><span class="javascript">          alert(<span class="string">&quot;你是火狐&quot;</span>);</span></span><br><span class="line"><span class="javascript">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/chrome/i</span>.test(ua))&#123;</span></span><br><span class="line"><span class="javascript">          alert(<span class="string">&quot;你是chrome&quot;</span>);</span></span><br><span class="line"><span class="javascript">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/safari/i</span>.test(ua))&#123;</span></span><br><span class="line"><span class="javascript">          alert(<span class="string">&quot;你是Safari&quot;</span>);</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">      &#125;;</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<img src="/images/207.png">
-
-<p>如果通过 userAgent 不能判断，还可以通过一些浏览器中特有的对象，来判断浏览器的信息</p>
-<blockquote>
-<p>比如：<strong>ActiveXObject</strong> 这个属性是用来判断 IE 浏览器的，使用 “<strong>ActiveXObject in window</strong>“ 即可判断是否为 IE 浏览器。</p>
-</blockquote>
-<p><strong>History</strong> 对象可以用来操作浏览器向前或向后翻页</p>
-<blockquote>
-<p><strong>length属性</strong></p>
-<blockquote>
-<p>获取当次访问的连接数量</p>
-</blockquote>
-<p><strong>back( )</strong></p>
-<blockquote>
-<p>可以用来回退到上一个页面，作用和浏览器的回退按钮一样</p>
-</blockquote>
-<p><strong>forward( )</strong></p>
-<blockquote>
-<p>可以跳转到下一个页面，作用和浏览器的前进按钮一样</p>
-</blockquote>
-<p><strong>go( )</strong></p>
-<blockquote>
-<p>可以用来跳转到指定的页面，他需要一个整数作为参数</p>
-<blockquote>
-<p>1 -&gt; 表示向前跳转一个页面 相当于 forward( )<br>2 -&gt; 表示向前跳转两个页面<br>-1 -&gt; 表示向后跳转一个页面 相当于 back( )<br>-2 -&gt; 表示向后跳转两个页面</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p><strong>Location</strong> 该对象中封装了浏览器的地址栏的信息</p>
-<blockquote>
-<p>如果直接打印 Location ，则可以获取到地址栏的信息（当前页面的完整路径）<br>如果直接将 location 属性修改为一个完整的路径，或相对路径，则我们的页面会自动跳转到该路径，并且会生成响应的历史记录。</p>
-<p><strong>assign( “URL地址” )</strong><br>用来跳转到其他的页面，作用和直接修改 location 一样</p>
-<p><strong>reload( )</strong><br>用于重新加载当前页面，作用和刷新按钮一样<br>如果在方法中传递一个 true 作为参数，则会强制清空缓存刷新页面。</p>
-<p><strong>replace( )</strong><br>可以使用一个新的页面来替换当前页面，调用完毕也会跳转页面，不会生成历史记录，不能使用回退按钮回退。</p>
-</blockquote>
-<p><strong>定时调用</strong></p>
-<blockquote>
-<p>JS 的程序的执行速度是非常非常快的，如果希望一段程序可以每间隔一段时间执行一次，可以使用定时调用</p>
-</blockquote>
-<p><strong>setInterval( )</strong> 定时调动，可以将一个函数，每隔一段时间执行一次。</p>
-<blockquote>
-<p><strong>参数：</strong><br>① 回调函数，该函数会每隔一段时间被调用一次<br>② 每次调用间隔的时间，单位是毫秒</p>
-<p><strong>返回值：</strong><br>返回一个 Number 类型的数据<br>这个数字用来作为定时器的唯一标识</p>
-</blockquote>
-<p><strong>clearInterval( )</strong> </p>
-<blockquote>
-<p>方法中需要一个定时器的标识作为参数，这样将关闭标识对应的定时器。<br>如果参数不是一个有效的标识，则什么都不做。</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>自动切换图片<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">      <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> count = <span class="built_in">document</span>.getElementById(<span class="string">&quot;count&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> num = <span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> timer = <span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">          count.innerHTML = num++;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">if</span>(num == <span class="number">11</span>)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 关闭定时器</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">clearInterval</span>(timer);</span></span><br><span class="line"><span class="javascript">          &#125;</span></span><br><span class="line"><span class="javascript">        &#125;, <span class="number">1000</span>);</span></span><br><span class="line"><span class="javascript">      &#125;;</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;count&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>以上代码就是通过定时器来将 h1 标签中的内容更改为 1-10 ，最终等到 11 就结束。</p>
-<p><strong>使图片自动切换</strong></p>
-<blockquote>
-<p><strong>原理：</strong><br>将所有要自动切换的图片路径都设置在一个数组中，然后设置定时器，使图片的路径按一定的时间进行切换。<br><strong>拓展：</strong><br>当我们点击了开始按钮就开始切换，点击暂停按钮就停止切换。</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>图片自动切换<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">      <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> img = <span class="built_in">document</span>.getElementById(<span class="string">&quot;img01&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> imgArr = [<span class="string">&quot;../exercise/imgs/01/1.png&quot;</span>, <span class="string">&quot;../exercise/imgs/01/2.png&quot;</span>, <span class="string">&quot;../exercise/imgs/01/3.png&quot;</span>];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> index = <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> timer;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> btn01 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;btn01&quot;</span>);</span></span><br><span class="line"><span class="javascript">        btn01.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">          <span class="comment">//  目前，我们每点击一次按钮，就会开启一个定时器，点击多次就会</span></span></span><br><span class="line"><span class="javascript">          <span class="comment">//  开启多个定时器，这就导致图片的切换速度过快，而且我们只能关闭最后</span></span></span><br><span class="line"><span class="javascript">          <span class="comment">// 一次开启的定时器</span></span></span><br><span class="line"><span class="javascript">          <span class="built_in">clearInterval</span>(timer);</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">          <span class="comment">// 设置定时器</span></span></span><br><span class="line"><span class="javascript">          timer = <span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//  使索引自增</span></span></span><br><span class="line"><span class="javascript">            index++;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//  判断索引是否超过最大索引</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (index &gt;= imgArr.length) &#123;</span></span><br><span class="line"><span class="javascript">              index = <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 修改 img 的src属性</span></span></span><br><span class="line"><span class="javascript">            img.src = imgArr[index];</span></span><br><span class="line"><span class="javascript">          &#125;, <span class="number">1000</span>);</span></span><br><span class="line"><span class="javascript">        &#125;;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> btn02 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;btn02&quot;</span>);</span></span><br><span class="line"><span class="javascript">        btn02.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="built_in">clearInterval</span>(timer);</span></span><br><span class="line"><span class="javascript">        &#125;;</span></span><br><span class="line"><span class="javascript">      &#125;;</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img01&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../exercise/imgs/01/1.png&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn01&quot;</span>&gt;</span>开始切换<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn02&quot;</span>&gt;</span>暂停切换<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="延时调用"><a href="#延时调用" class="headerlink" title="延时调用"></a>延时调用</h4><p>开启延时调用也是设置 <strong>setTimeout( )</strong></p>
-<blockquote>
-<p>延时调用一个函数不马上执行，而且相隔一段时间后在执行，而且只会执行一次。</p>
-</blockquote>
-<p>使用 <strong>clearTimeout( )</strong> 来关闭一个延时调用。</p>
-<p>延时调用和定时调用实际上是可以互相代替的，在开发中可以根据自己的需要去选择。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> num = <span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">      <span class="comment">// 开启延时调用。</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//  延时调用一个函数不马上执行，而是相隔一段时间后在执行,</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//  而且只会执行一次</span></span></span><br><span class="line"><span class="javascript">      <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(num++);</span></span><br><span class="line"><span class="javascript">      &#125;,<span class="number">1000</span>);</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<img src="/images/208.png">
-
+        <h4 id="关于闭包…"><a href="#关于闭包…" class="headerlink" title="关于闭包…"></a>关于闭包…<span id="more"></span></h4>
       
 
       
@@ -326,7 +231,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/09/20/BOM%E6%A8%A1%E5%9E%8B/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/11/19/JS%E9%97%AD%E5%8C%85/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -340,18 +245,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/09/22/JSON%E5%AF%B9%E8%B1%A1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JSON
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/09/19/JS%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JS事件对象</div>
+    <a href="/2021/11/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">作用域</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -473,7 +369,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,11 +377,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
