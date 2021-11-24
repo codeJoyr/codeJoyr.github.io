@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://example.com/images/245.png">
 <meta property="og:image" content="http://example.com/images/246.png">
 <meta property="article:published_time" content="2021-11-16T02:33:45.000Z">
-<meta property="article:modified_time" content="2021-11-19T00:35:13.721Z">
+<meta property="article:modified_time" content="2021-11-24T11:29:13.783Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
@@ -225,7 +225,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">inner</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;)()</span><br><span class="line">outer()</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>① 当V8引擎遇到 outer 函数与 inner 函数声明时，发现它未被立即执行，就采用 PreParser 对其进行预解析<br>② 当 V8 遇到了(bar( ))( ) 时，就会知道这是一个立即执行表达式，所以就采用 PreParser 对齐解析<br>③ 当 outer( ) 函数被调用的时候，会采用 Parser 对 foo 函数进行解析,此时 inner 函数会再次进行预解析,以此可以得出如果函数的嵌套层级过深,就会导致执行多次预解析,从而影响性能.</p>
+<p>① 当V8引擎遇到 outer 函数与 inner 函数声明时，发现它未被立即执行，就采用 PreParser 对其进行预解析<br>② 当 V8 遇到了(bar( ))( ) 时，就会知道这是一个立即执行表达式，所以就采用 PreParser 对其解析<br>③ 当 outer( ) 函数被调用的时候，会采用 Parser 对 foo 函数进行解析,此时 inner 函数会再次进行预解析,以此可以得出如果函数的嵌套层级过深,就会导致执行多次预解析,从而影响性能.</p>
 </blockquote>
 <p><strong>Parser 的主要任务</strong>：① 分析语法错误 ② 输出AST抽象语法树 ③ 确定词法作用域</p>
 <p>来看上述代码生成的 AST 抽象语法树：<br><img src="/images/243.jpg"></p>
