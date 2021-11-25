@@ -20,8 +20,10 @@
 <meta property="og:image" content="http://example.com/images/263.png">
 <meta property="og:image" content="http://example.com/images/264.png">
 <meta property="og:image" content="http://example.com/images/265.png">
+<meta property="og:image" content="http://example.com/images/266.png">
+<meta property="og:image" content="http://example.com/images/267.png">
 <meta property="article:published_time" content="2021-11-19T00:30:33.000Z">
-<meta property="article:modified_time" content="2021-11-25T11:31:28.468Z">
+<meta property="article:modified_time" content="2021-11-25T12:10:24.448Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
@@ -209,7 +211,7 @@
 <li>也就是说，闭包让你可以在一个内层函数中访问到其外层函数的作用域</li>
 <li>在 JavaScript 中，每当创建一个函数，闭包就会在函数创建的同时被创建出来</li>
 </ul>
-<p>先来实例一段代码：</p>
+<h4 id="高阶函数执行过程"><a href="#高阶函数执行过程" class="headerlink" title="高阶函数执行过程"></a>高阶函数执行过程</h4><p>先来实例一段代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;bar&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> bar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = foo()</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
 
 <p>上述代码在编译期间时在内存中：<br><img src="/images/261.png"><br>当我们在编译期间，会对fn变量与foo函数进行解析，发现foo是一个函数，就会在内存中创建foo所对应的函数对象，并且对foo函数中的bar函数进行预解析。<br/></p>
@@ -218,7 +220,15 @@
 <p>上述代码在第九行执行完毕时在内存中：<br><img src="/images/263.png"></p>
 <p>在第九行执行完毕的时候，foo所产生的函数执行上下文会弹出栈，并且将 fn 设置为 bar 函数对象的内存地址。<br/></p>
 <p>上述代码在执行到第十行时：<br><img src="/images/264.png"></p>
-<p>在执行到第十行的时候，会将bar所产生的函数执行上下文压入栈中，然后创建bar函数所对应的AO对象，然后执行bar函数中的代码，执行结束将bar所对应的函数执行上下文弹出栈，然后将堆空间中没有引用指向的空间销毁。<br/><br><img src="/images/265.png"></p>
+<p>在执行到第十行的时候，会将bar所产生的函数执行上下文压入栈中，然后创建bar函数所对应的AO对象，然后执行bar函数中的代码，执行结束将bar所对应的函数执行上下文弹出栈，然后将堆空间中没有引用指向的空间销毁（之前的操作也会执行此操作，这里并不是表达内存管理）。<br/><br><img src="/images/265.png"> <br/><br/></p>
+<h4 id="闭包的执行过程"><a href="#闭包的执行过程" class="headerlink" title="闭包的执行过程"></a>闭包的执行过程</h4><p><strong>对上述代码进行小小的修改</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">18</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(age)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> bar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = foo()</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
+
+<p>上述代码在执行到第十行时在内存中：<br><img src="/images/266.png"> <br/></p>
+<p>执行到第十一行时：<br><img src="/images/267.png"></p>
+<p>在执行到第四行的时候就会去寻找 age 属性，这时我们就会在作用域链中进行查找，发现自身中没有age属性，然后去上层作用域foo中寻找，然后就在foo作用域中进行查找age属性，发现找到了age=18。</p>
+<p><strong>那么上述代码在哪里形成了闭包呢？</strong><br>当我们在调用 fn() 时，也就是调用 bar() ，在正常情况下，在 foo() 执行结束之后，foo 函数中的所有东西都应该被销毁，但是我在调用 bar() 的时候依然能够从 foo() 中拿到age属性，这个时候就形成了闭包。</p>
+<p><strong>闭包由两部分组成</strong>： 函数 + 可以访问的自由变量</p>
 
       
 
