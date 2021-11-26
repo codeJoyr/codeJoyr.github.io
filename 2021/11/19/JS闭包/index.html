@@ -22,8 +22,13 @@
 <meta property="og:image" content="http://example.com/images/265.png">
 <meta property="og:image" content="http://example.com/images/266.png">
 <meta property="og:image" content="http://example.com/images/267.png">
+<meta property="og:image" content="http://example.com/images/268.png">
+<meta property="og:image" content="http://example.com/images/269.png">
+<meta property="og:image" content="http://example.com/images/270.png">
+<meta property="og:image" content="http://example.com/images/271.png">
+<meta property="og:image" content="http://example.com/images/272.png">
 <meta property="article:published_time" content="2021-11-19T00:30:33.000Z">
-<meta property="article:modified_time" content="2021-11-25T12:10:24.448Z">
+<meta property="article:modified_time" content="2021-11-26T02:19:24.153Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
@@ -229,6 +234,19 @@
 <p>在执行到第四行的时候就会去寻找 age 属性，这时我们就会在作用域链中进行查找，发现自身中没有age属性，然后去上层作用域foo中寻找，然后就在foo作用域中进行查找age属性，发现找到了age=18。</p>
 <p><strong>那么上述代码在哪里形成了闭包呢？</strong><br>当我们在调用 fn() 时，也就是调用 bar() ，在正常情况下，在 foo() 执行结束之后，foo 函数中的所有东西都应该被销毁，但是我在调用 bar() 的时候依然能够从 foo() 中拿到age属性，这个时候就形成了闭包。</p>
 <p><strong>闭包由两部分组成</strong>： 函数 + 可以访问的自由变量</p>
+<h4 id="JS闭包引起的内存泄漏"><a href="#JS闭包引起的内存泄漏" class="headerlink" title="JS闭包引起的内存泄漏"></a>JS闭包引起的内存泄漏</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&#x27;foo&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">18</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name)</span><br><span class="line">    <span class="built_in">console</span>.log(age)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> bar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = foo()</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
+
+<p>上述代码在执行到第十二行时：<br><img src="/images/268.png"></p>
+<p>当第十二行代码执行完的时候，就以为着栈空间中foo所对应的函数执行上下文就要被出栈，也就意味着FEC(foo)中指向AO(foo)对象的指针被销毁了，就像下图：<br><img src="/images/269.png"></p>
+<p>但是bar函数对象和AO(foo)对象不会被销毁，因为我们在GO中存在对bar函数对象的引用，而bar函数对象又有引用指向AO(foo)对象。</p>
+<p>上述代码执行到第十三行时：我们在bar对应的函数对象中找不到name与age，就去上层作用域AO(foo)中寻找，找到了name与age，直接打印。<br><img src="/images/270.png"></p>
+<p>当第十三行执行完时，ECStack中的bar的函数执行上下文就会被弹出：<br><img src="/images/271.png"></p>
+<p>最终执行完代码的内存为上图，这就引出了一个问题，<strong>闭包是有内存泄漏的</strong>，原因就是上面的流程，例如上面的bar函数对象一直不会被销毁，因为全局变量fn一直保存着bar函数对象的引用，所以就导致AO(foo)对象不会被销毁。</p>
+<p>在这里思考一个问题，我们上述的代码只需要执行一次bar函数，但是上述代码却一直在内存中保存着这两块内存空间，这就可以称之为内存泄漏，它本应该被GC回收，但是却无法回收。</p>
+<p><strong>那么我们想回收掉这两块区域该怎样做？</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&#x27;foo&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">18</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name)</span><br><span class="line">    <span class="built_in">console</span>.log(age)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> bar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = foo()</span><br><span class="line">fn()</span><br><span class="line"></span><br><span class="line">fn = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<p>将 fn 设置为 null ，也就意味着再没有指针指向 bar 函数对象，从而GC也就可以将这两块区域进行回收了。<br/><br><img src="/images/272.png"></p>
 
       
 
@@ -445,15 +463,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
