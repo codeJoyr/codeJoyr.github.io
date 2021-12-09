@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/273.png">
 <meta property="article:published_time" content="2021-11-22T07:52:08.000Z">
-<meta property="article:modified_time" content="2021-12-01T07:06:47.186Z">
+<meta property="article:modified_time" content="2021-12-08T11:48:46.514Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
@@ -164,7 +164,7 @@
 <ul>
 <li>常见面向对象的编程语言中，比如Java、C++、Swift等等编程语言中，this通常只会出现在类的方法中</li>
 <li>也就是你想要一个类，类中的方法（特别是实例方法）中，this代表的是当前调用对象</li>
-<li>但是JavaScript中的this更加领过，无论是<strong>它出现的位置还是它代表的含义</strong></li>
+<li>但是JavaScript中的this更加灵活，无论是<strong>它出现的位置还是它代表的含义</strong></li>
 </ul>
 <p><strong>实例：同一个函数的this的不同</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 直接调用这个函数</span></span><br><span class="line">foo()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建一个对象，对象中的函数指向foo</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;why&#x27;</span>,</span><br><span class="line">  <span class="attr">foo</span>: foo</span><br><span class="line">&#125;</span><br><span class="line">obj.foo()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. apply调用</span></span><br><span class="line">foo.apply(<span class="string">&quot;aaa&quot;</span>)</span><br></pre></td></tr></table></figure>
