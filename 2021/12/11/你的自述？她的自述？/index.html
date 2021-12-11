@@ -6,34 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>JS闭包 | Joyr</title>
+  <title>你的自述？她的自述？ | Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于闭包…">
+  <meta name="description" content="你到底是个怎么样的人呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS闭包">
-<meta property="og:url" content="http://example.com/2021/11/19/JS%E9%97%AD%E5%8C%85/index.html">
+<meta property="og:title" content="你的自述？她的自述？">
+<meta property="og:url" content="http://example.com/2021/12/11/%E4%BD%A0%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F%E5%A5%B9%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="关于闭包…">
+<meta property="og:description" content="你到底是个怎么样的人呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/261.png">
-<meta property="og:image" content="http://example.com/images/262.png">
-<meta property="og:image" content="http://example.com/images/263.png">
-<meta property="og:image" content="http://example.com/images/264.png">
-<meta property="og:image" content="http://example.com/images/265.png">
-<meta property="og:image" content="http://example.com/images/266.png">
-<meta property="og:image" content="http://example.com/images/267.png">
-<meta property="og:image" content="http://example.com/images/268.png">
-<meta property="og:image" content="http://example.com/images/269.png">
-<meta property="og:image" content="http://example.com/images/270.png">
-<meta property="og:image" content="http://example.com/images/271.png">
-<meta property="og:image" content="http://example.com/images/272.png">
-<meta property="article:published_time" content="2021-11-19T00:30:33.000Z">
-<meta property="article:modified_time" content="2021-11-26T02:19:24.153Z">
+<meta property="article:published_time" content="2021-12-11T14:51:16.000Z">
+<meta property="article:modified_time" content="2021-12-11T15:15:01.623Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="前端">
-<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="自述">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/261.png">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
   
@@ -151,102 +137,39 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JS闭包" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-你的自述？她的自述？" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JS闭包
+      你的自述？她的自述？
     </h1>
   
 
         
-        <a href="/2021/11/19/JS%E9%97%AD%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2021-11-19T00:30:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-19</time>
+        <a href="/2021/12/11/%E4%BD%A0%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F%E5%A5%B9%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F/" class="archive-article-date">
+  	<time datetime="2021-12-11T14:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="关于闭包…"><a href="#关于闭包…" class="headerlink" title="关于闭包…"></a>关于闭包…<span id="more"></span></h4><p><strong>JS 中函数是一等公民</strong> : 这意味着函数的使用是非常的灵活的，可以作为另外一个函数的参数，也可以作为另外一个函数的返回值来使用！</p>
-<p><strong>函数作为参数</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将函数作为另外一个函数的参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  fn()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;bar()被调用了&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">foo(bar) <span class="comment">// bar()被调用了</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>传入函数作为参数实现计算</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  由传入的 calcFn 函数来决定 num1与num2 如何计算</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span>(<span class="params">num1, num2, calcFn</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(calcFn(num1, num2))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sub</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mul</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 * num2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> m = <span class="number">20</span></span><br><span class="line"><span class="keyword">var</span> n = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">calc(m, n, add) <span class="comment">// 50</span></span><br><span class="line">calc(m, n, sub) <span class="comment">// -10</span></span><br><span class="line">calc(m, n, mul) <span class="comment">// 600</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>函数作为返回值</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;bar&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> bar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = foo()</span><br><span class="line">fn() <span class="comment">//  bar</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>内部函数引用外部函数的参数(闭包)</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeAdder</span>(<span class="params">count</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> count + num</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> add</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add5 = makeAdder(<span class="number">5</span>)</span><br><span class="line"><span class="built_in">console</span>.log(add5(<span class="number">10</span>)) <span class="comment">// 15</span></span><br><span class="line"><span class="built_in">console</span>.log(add5(<span class="number">30</span>)) <span class="comment">// 35</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add10 = makeAdder(<span class="number">10</span>)</span><br><span class="line"><span class="built_in">console</span>.log(add10(<span class="number">33</span>)) <span class="comment">// 43</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>高阶函数：</strong> 把一个函数如果接受另外一个函数作为参数，或者该函数会返回另外一个函数作为返回值的函数，那么这个函数就称之为是一个高阶函数。</p>
-<p><strong>数组中的函数使用：</strong></p>
-<p><strong>普通循环寻找数组中的偶数</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">10</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">100</span>, <span class="number">55</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">//  使用普通循环来进行遍历过滤</span></span><br><span class="line"><span class="keyword">var</span> newNums = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">  <span class="keyword">var</span> num = nums[i]</span><br><span class="line">  <span class="keyword">if</span> (num % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    newNums.push(num)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(newNums) <span class="comment">// [ 10, 100 ]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>使用数组的 filter 方法</strong></p>
-<p><strong>filter 方法：</strong> 本身接受一个参数函数，需要返回 boolean 类型，自动进行回调该函数，并且参数函数的参数可以传入<strong>三个参数（<em>item【, index, array】</em>）</strong></p>
-<blockquote>
-<p><strong>调用过程</strong></p>
-<p>10 0 =&gt; <strong>true</strong> [10, 5, 11, 100, 55]<br>5 1 =&gt; <strong>false</strong> [10, 5, 11, 100, 55]<br>11 2 =&gt; <strong>false</strong> [10, 5, 11, 100, 55]<br>100 3 =&gt; <strong>true</strong> [10, 5, 11, 100, 55]<br>55 4 =&gt; <strong>false</strong> [10, 5, 11, 100, 55]</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">10</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">100</span>, <span class="number">55</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用数组的 filter 方法进行过滤</span></span><br><span class="line"><span class="keyword">var</span> newNums = nums.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item % <span class="number">2</span> === <span class="number">0</span> <span class="comment">// 如果是偶数则存入数组</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(newNums) <span class="comment">// [ 10, 100 ]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>使用数组的 map 方法</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">10</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">100</span>, <span class="number">55</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用数组的 map 方法进行过滤</span></span><br><span class="line"><span class="keyword">var</span> newNums2 = []</span><br><span class="line">nums.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(item % <span class="number">2</span> === <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> newNums2.push(item)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(newNums2) <span class="comment">// [ 10, 100 ]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>使用数组的 forEach 方法</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">10</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">100</span>, <span class="number">55</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用数组的 forEach 方法进行过滤</span></span><br><span class="line"><span class="keyword">var</span> newNums3 = []</span><br><span class="line">nums.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(item % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    newNums3.push(item)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(newNums3) <span class="comment">// [ 10, 100 ]</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="JS-中闭包的定义"><a href="#JS-中闭包的定义" class="headerlink" title="JS 中闭包的定义"></a>JS 中闭包的定义</h4><p><strong>在计算机科学中对闭包的定义：（维基百科）</strong> </p>
-<ul>
-<li>闭包（英语：Closure，又称<strong>词法闭包(Lexical Closure)<strong>）或</strong>函数闭包</strong>（function closures）</li>
-<li>是在支持<strong>头等函数</strong>的编程语言中，实现词法绑定的一种技术</li>
-<li>闭包在实现上是一种结构体，它存储了一个函数和一个关联的环境（相当于一个符号查找表）</li>
-<li>闭包跟函数最大的区别在于，当捕捉闭包时，它的<strong>自由变量</strong>会在捕捉时确定，这样即使脱离了捕捉时的上下文，它也能照常运行</li>
-</ul>
-<p><strong>MDN对JavaScript 闭包的解释</strong></p>
-<ul>
-<li>一个函数对其周围状态（<strong>lexical environment，词法环境</strong>）的引用捆绑在一起（或者说函数被引用包围），这样的组合就是<strong>闭包（closure）</strong></li>
-<li>也就是说，闭包让你可以在一个内层函数中访问到其外层函数的作用域</li>
-<li>在 JavaScript 中，每当创建一个函数，闭包就会在函数创建的同时被创建出来</li>
-</ul>
-<h4 id="高阶函数执行过程"><a href="#高阶函数执行过程" class="headerlink" title="高阶函数执行过程"></a>高阶函数执行过程</h4><p>先来实例一段代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;bar&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> bar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = foo()</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
-
-<p>上述代码在编译期间时在内存中：<br><img src="/images/261.png"><br>当我们在编译期间，会对fn变量与foo函数进行解析，发现foo是一个函数，就会在内存中创建foo所对应的函数对象，并且对foo函数中的bar函数进行预解析。<br/></p>
-<p>上述代码在执行到第九行时在内存中：<br><img src="/images/262.png"></p>
-<p>当我们执行到了第九行的时候，会在栈中压入foo的函数执行上下文，并且创建foo函数所对应的AO对象，执行foo函数中时会发现bar函数，就在堆空间中创建bar所对应的函数对象，foo函数结束之后返回 bar 的引用值。<br/></p>
-<p>上述代码在第九行执行完毕时在内存中：<br><img src="/images/263.png"></p>
-<p>在第九行执行完毕的时候，foo所产生的函数执行上下文会弹出栈，并且将 fn 设置为 bar 函数对象的内存地址。<br/></p>
-<p>上述代码在执行到第十行时：<br><img src="/images/264.png"></p>
-<p>在执行到第十行的时候，会将bar所产生的函数执行上下文压入栈中，然后创建bar函数所对应的AO对象，然后执行bar函数中的代码，执行结束将bar所对应的函数执行上下文弹出栈，然后将堆空间中没有引用指向的空间销毁（之前的操作也会执行此操作，这里并不是表达内存管理）。<br/><br><img src="/images/265.png"> <br/><br/></p>
-<h4 id="闭包的执行过程"><a href="#闭包的执行过程" class="headerlink" title="闭包的执行过程"></a>闭包的执行过程</h4><p><strong>对上述代码进行小小的修改</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">18</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(age)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> bar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = foo()</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
-
-<p>上述代码在执行到第十行时在内存中：<br><img src="/images/266.png"> <br/></p>
-<p>执行到第十一行时：<br><img src="/images/267.png"></p>
-<p>在执行到第四行的时候就会去寻找 age 属性，这时我们就会在作用域链中进行查找，发现自身中没有age属性，然后去上层作用域foo中寻找，然后就在foo作用域中进行查找age属性，发现找到了age=18。</p>
-<p><strong>那么上述代码在哪里形成了闭包呢？</strong><br>当我们在调用 fn() 时，也就是调用 bar() ，在正常情况下，在 foo() 执行结束之后，foo 函数中的所有东西都应该被销毁，但是我在调用 bar() 的时候依然能够从 foo() 中拿到age属性，这个时候就形成了闭包。</p>
-<p><strong>闭包由两部分组成</strong>： 函数 + 可以访问的自由变量</p>
-<h4 id="JS闭包引起的内存泄漏"><a href="#JS闭包引起的内存泄漏" class="headerlink" title="JS闭包引起的内存泄漏"></a>JS闭包引起的内存泄漏</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&#x27;foo&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">18</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name)</span><br><span class="line">    <span class="built_in">console</span>.log(age)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> bar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = foo()</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
-
-<p>上述代码在执行到第十二行时：<br><img src="/images/268.png"></p>
-<p>当第十二行代码执行完的时候，就以为着栈空间中foo所对应的函数执行上下文就要被出栈，也就意味着FEC(foo)中指向AO(foo)对象的指针被销毁了，就像下图：<br><img src="/images/269.png"></p>
-<p>但是bar函数对象和AO(foo)对象不会被销毁，因为我们在GO中存在对bar函数对象的引用，而bar函数对象又有引用指向AO(foo)对象。</p>
-<p>上述代码执行到第十三行时：我们在bar对应的函数对象中找不到name与age，就去上层作用域AO(foo)中寻找，找到了name与age，直接打印。<br><img src="/images/270.png"></p>
-<p>当第十三行执行完时，ECStack中的bar的函数执行上下文就会被弹出：<br><img src="/images/271.png"></p>
-<p>最终执行完代码的内存为上图，这就引出了一个问题，<strong>闭包是有内存泄漏的</strong>，原因就是上面的流程，例如上面的bar函数对象一直不会被销毁，因为全局变量fn一直保存着bar函数对象的引用，所以就导致AO(foo)对象不会被销毁。</p>
-<p>在这里思考一个问题，我们上述的代码只需要执行一次bar函数，但是上述代码却一直在内存中保存着这两块内存空间，这就可以称之为内存泄漏，它本应该被GC回收，但是却无法回收。</p>
-<p><strong>那么我们想回收掉这两块区域该怎样做？</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&#x27;foo&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">18</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name)</span><br><span class="line">    <span class="built_in">console</span>.log(age)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> bar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = foo()</span><br><span class="line">fn()</span><br><span class="line"></span><br><span class="line">fn = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
-
-<p>将 fn 设置为 null ，也就意味着再没有指针指向 bar 函数对象，从而GC也就可以将这两块区域进行回收了。<br/><br><img src="/images/272.png"></p>
+        <p>你到底是个怎么样的人呢？<span id="more"></span></p>
+<p>我只是一个普通人吧。</p>
+<p>我会胆小，虽然我可以也不改色地走夜路，我也不怕所谓的魑魅魍魉，但我很害怕失去这两个字，也很害怕失败。我怕我失去那些我拥有的，我有时焦虑的睡不着，失眠。</p>
+<p>我也会有七情六欲，所谓看破人生，在我看来太没有意思了，我和无数朋友一样，拥有常人所有的情绪，哪怕有一瞬间被夸奖，都能激起片刻的虚荣心。</p>
+<p>当然好多人问过我的择偶标准，这应该是最不应该相信的吧，因为爱是不受控制的，我始终相信只要爱来了，我甚至能给一棵树披上婚纱。</p>
+<p>我也会感到所有的负面情绪，我会感到孤独，会在想起过去时伤感地抽烟，会沮丧时一个人坐着发呆。闲暇的时候我会幻想那些永远不会发生的事情，比如年少家贫时，幻想称为富翁，比如颓废至极时，幻想成为英雄，比如孤单时，幻想拥有世上最炙热的爱与被爱。</p>
+<p>在我的生命中，太多问题得不到答案，我为此而困惑。</p>
+<p>那么岁月给予我的是什么呢？其实只有勇气，我在许多年以后，终于在眼泪和痛苦中，学会了勇敢。我依旧会对一切痛苦的事物感到恐惧，但这无法阻止我向前走去。这份勇气将陪伴我走过无数的悲剧， 走过我惨淡的人生，走过一切的遗憾。</p>
+<p>故而时至今日，我依旧对浪漫和爱怀揣期待。</p>
+<p>我绝不停下，任何事物都无法阻碍我。我绝对强大，我是我精神世界中的玄机，我主宰自己。我是草贱之名，但我亦要攀附云巅。我是星星之火，但我也要燃烧长夜。我是寒门，我是败狗，我是疯狂者，但我终将用仅存的光芒照亮黑暗。</p>
+<p>那你呢，你对所有人来说，又是什么呢？</p>
+<p><q>对我而言，你就是一个普通的男孩儿，和其他那些成百上千个男孩儿没什么区别。我对你没什么需求，你对我也没有。对你而言，我也只不过是一只普通的狐狸，和其他成百上千只狐狸一样。但是一旦你将我驯养了，我们就彼此相互需要。在我看来，你就是世界上独一无二的。在你看来，我也是世上唯一的… —–《小王子》</q></p>
+<p>2021-12-11</p>
 
       
 
@@ -254,17 +177,18 @@
     </div>
     <div class="article-info article-info-index">
       
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">自述</a>
         		</li>
       		
 		</ul>
@@ -320,7 +244,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/11/19/JS%E9%97%AD%E5%8C%85/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/12/11/%E4%BD%A0%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F%E5%A5%B9%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -334,18 +258,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/11/22/JS%E4%B8%AD%E7%9A%84this%E6%8C%87%E5%90%91/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JS中的this指向
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/11/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">作用域</div>
+    <a href="/2021/12/11/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%92%8C%E7%BB%A7%E6%89%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS原型链和继承</div>
       <i class="icon-circle-right"></i>
     </a>
   
