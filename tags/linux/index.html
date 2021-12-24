@@ -6,23 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>JS面向对象 | Joyr</title>
+  <title>Tag: linux | Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="浅谈面向对象的思想…">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JS面向对象">
-<meta property="og:url" content="http://example.com/2021/12/08/JS%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
+  <meta name="description" content="个人技术博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Joyr">
+<meta property="og:url" content="http://example.com/tags/linux/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="浅谈面向对象的思想…">
+<meta property="og:description" content="个人技术博客">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/274.png">
-<meta property="article:published_time" content="2021-12-08T02:10:13.000Z">
-<meta property="article:modified_time" content="2021-12-11T00:44:22.422Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="前端">
-<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="前端博客，后端博客，java,vue.js,jquery,html5,react">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/274.png">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
   
@@ -140,217 +135,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JS面向对象" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      JS面向对象
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/12/24/Linux%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
+  	<time datetime="2021-12-24T11:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-24</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/12/24/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a>
     </h1>
   
 
-        
-        <a href="/2021/12/08/JS%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2021-12-08T02:10:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="浅谈面向对象的思想…"><a href="#浅谈面向对象的思想…" class="headerlink" title="浅谈面向对象的思想…"></a>浅谈面向对象的思想…<span id="more"></span></h4><h4 id="面向对象是现实的抽象方式"><a href="#面向对象是现实的抽象方式" class="headerlink" title="面向对象是现实的抽象方式"></a>面向对象是现实的抽象方式</h4><p>对象是JavaScript中一个非常重要的概念，这是因为对象可以<strong>将多个相关联的数据封装</strong>到一起，更好的<strong>描述一个事物</strong>。</p>
-<blockquote>
-<ul>
-<li><strong>比如我们描述一辆车：</strong> Car，具有颜色( color )，速度( speed )，品牌( brand )，价格( price )，行驶( travel ) 等等…</li>
-<li><strong>比如我们描述一个人：</strong> Person，具有姓名( name )，年龄( age )，身高( height )，吃东西( eat )，跑步( run ) 等等…</li>
-</ul>
-</blockquote>
-<p>用<strong>对象来描述事物</strong>，更有利于我们<strong>将现实的事物</strong>，抽离成代码中<strong>某个数据结构</strong>：</p>
-<blockquote>
-<ul>
-<li>所以有一些编程语言就是纯面向对象的编程语言，比如Java</li>
-<li>你在实现任何现实抽象时都需要先创建一个类，根据类再去创建对象</li>
-</ul>
-</blockquote>
-<img src="/images/274.png">
-
-<p><strong>JavaScript的面向对象</strong> ： JavaScript其实支持多种编程范式的，包括函数式编程和面向对象编程。</p>
-<ul>
-<li>JavaScript中的对象被设计成一组<strong>属性的无序集合</strong>，像是一个<strong>哈希表</strong>，有key和value组成</li>
-<li><strong>key是一个标识符名称，value可以是任意类型</strong>，也可以是<strong>其他对象或者函数类型</strong></li>
-<li>如果值<strong>是一个函数</strong>，那么我们可以称之为是<strong>对象的方法</strong></li>
-</ul>
-<h4 id="JS中创建对象的方案"><a href="#JS中创建对象的方案" class="headerlink" title="JS中创建对象的方案"></a>JS中创建对象的方案</h4><p>方案一：<strong>通过字面量的方式创建</strong><br>通过字面量创建对象的方式在对于创建多个拥有同样属性与方法的对象时，会显得非常冗余，非常白痴…</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">1.88</span>,</span><br><span class="line">  <span class="attr">address</span>: <span class="string">&#x27;广州&#x27;</span>,</span><br><span class="line">  <span class="attr">eatting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;在吃东西~&quot;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">running</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;在跑步~&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">1.98</span>,</span><br><span class="line">  <span class="attr">address</span>: <span class="string">&#x27;伤害&#x27;</span>,</span><br><span class="line">  <span class="attr">eatting</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;在吃东西~&quot;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">running</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;在跑步~&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ... 很多很多个拥有相同属性和方法的对象</span></span><br></pre></td></tr></table></figure>
-
-<p>方案二：<strong>工厂模式</strong></p>
-<blockquote>
-<p>工厂模式其实是一种常见的设计模式<br>通常我们会有一个工厂方法，通过该工厂方法我们可以产生想要的对象</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age, height, address</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> p = &#123;&#125;</span><br><span class="line">  p.name = name</span><br><span class="line">  p.age = age</span><br><span class="line">  p.height = height</span><br><span class="line">  </span><br><span class="line">  p.eating = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;在吃东西~&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  p.running = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;在跑步~&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> p</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = createPerson(<span class="string">&#x27;张三&#x27;</span>, <span class="number">18</span>, <span class="number">1.88</span>, <span class="string">&#x27;广州市&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> p2 = createPerson(<span class="string">&#x27;李四&#x27;</span>, <span class="number">19</span>, <span class="number">1.87</span>, <span class="string">&#x27;上海市&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> p3 = createPerson(<span class="string">&#x27;王五&#x27;</span>, <span class="number">22</span>, <span class="number">1.77</span>, <span class="string">&#x27;北京市&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(p1, p2, p3)</span><br></pre></td></tr></table></figure>
-
-<p><strong>执行结果：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">1.88</span>,</span><br><span class="line">  <span class="attr">eating</span>: [<span class="built_in">Function</span> (anonymous)],</span><br><span class="line">  <span class="attr">running</span>: [<span class="built_in">Function</span> (anonymous)]</span><br><span class="line">&#125; &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">19</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">1.87</span>,</span><br><span class="line">  <span class="attr">eating</span>: [<span class="built_in">Function</span> (anonymous)],</span><br><span class="line">  <span class="attr">running</span>: [<span class="built_in">Function</span> (anonymous)]</span><br><span class="line">&#125; &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;王五&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">22</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">1.77</span>,</span><br><span class="line">  <span class="attr">eating</span>: [<span class="built_in">Function</span> (anonymous)],</span><br><span class="line">  <span class="attr">running</span>: [<span class="built_in">Function</span> (anonymous)]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过输出结果可以看出工厂模式的缺点：创建出来的对象都是Object类型的实例，获取不到对象最真实的类型，对对象的约束过于宽泛，不够具体，容易产生歧义。</p>
-<p>方案三：<strong>构造函数方案</strong></p>
-<blockquote>
-<p>构造函数也称之为构造器（constructor），通常是我们在创建对象时会调用的函数<br>在其他面向对象的编程语言里面，构造函数时存在于类中的一个方法，称之为构造方法<br>但是<strong>在JavaScript中的构造函数有点不太一样</strong></p>
-</blockquote>
-<p><strong>JavaScript中的构造函数</strong></p>
-<blockquote>
-<p>构造函数也是一个普通的函数，从表现形式来说，和千千万万个普通的函数没有任何区别<br>那么如果这么一个普通的函数被<strong>使用new操作符来调用</strong>了，那么这个函数就称之为是一个构造函数</p>
-</blockquote>
-<p><strong>如果一个函数被使用new操作符调用了，那么它会执行如下操作</strong></p>
-<blockquote>
-<ol>
-<li>在内存中创建一个新的对象 （空对象）</li>
-<li>这个对象内部的 [[prototype]] 属性会被赋值为该构造函数的prototype属性</li>
-<li>构造函数内部的this，会指向创建出来的新对象</li>
-<li>执行函数的内部代码</li>
-<li>如果构造函数没有返回非空对象，则返回创建出来的新对象</li>
-</ol>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, height, address</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name</span><br><span class="line">  <span class="built_in">this</span>.age = age</span><br><span class="line">  <span class="built_in">this</span>.height = height</span><br><span class="line">  <span class="built_in">this</span>.address = address</span><br><span class="line"></span><br><span class="line">  <span class="built_in">this</span>.eating = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;在吃东西~&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.running = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;在跑步~&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>, <span class="number">18</span>, <span class="number">1.88</span>, <span class="string">&quot;广州市&quot;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(p1)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">输出结果：</span></span><br><span class="line"><span class="comment">Person &#123;</span></span><br><span class="line"><span class="comment">  name: &#x27;张三&#x27;,</span></span><br><span class="line"><span class="comment">  age: 18,</span></span><br><span class="line"><span class="comment">  height: 1.88,</span></span><br><span class="line"><span class="comment">  address: &#x27;广州市&#x27;,</span></span><br><span class="line"><span class="comment">  eating: [Function (anonymous)],</span></span><br><span class="line"><span class="comment">  running: [Function (anonymous)]</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/12/08/JS%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/12/11/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%92%8C%E7%BB%A7%E6%89%BF/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JS原型链和继承
-        
-      </div>
-    </a>
   
   
-    <a href="/2021/12/05/JS%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JS函数式编程</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -373,9 +211,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -455,11 +293,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">javase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
