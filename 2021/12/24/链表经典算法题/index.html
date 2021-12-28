@@ -6,18 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021/7 | Joyr</title>
+  <title>链表经典算法题 | Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Joyr">
-<meta property="og:url" content="http://example.com/archives/2021/07/index.html">
+  <meta name="description" content="链表相关面试题…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表经典算法题">
+<meta property="og:url" content="http://example.com/2021/12/24/%E9%93%BE%E8%A1%A8%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="链表相关面试题…">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/277.png">
+<meta property="og:image" content="http://example.com/images/278.png">
+<meta property="og:image" content="http://example.com/images/279.png">
+<meta property="og:image" content="http://example.com/images/280.jpg">
+<meta property="og:image" content="http://example.com/images/286.png">
+<meta property="og:image" content="http://example.com/images/287.png">
+<meta property="article:published_time" content="2021-12-24T06:17:40.000Z">
+<meta property="article:modified_time" content="2021-12-25T15:46:17.342Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="前端博客，后端博客，java,vue.js,jquery,html5,react">
+<meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/277.png">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
   
@@ -135,36 +144,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-链表经典算法题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      链表经典算法题
+    </h1>
+  
+
+        
+        <a href="/2021/12/24/%E9%93%BE%E8%A1%A8%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2021-12-24T06:17:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-24</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="链表相关面试题…"><a href="#链表相关面试题…" class="headerlink" title="链表相关面试题…"></a>链表相关面试题…<span id="more"></span></h4><p><strong>一、环形链表</strong> (LeetCode141)</p>
+<img src="/images/277.png">
+
+<p><strong>解决思路：</strong><br>①  依次遍历链表，并且需要另外一个存储空间（哈希表），在遍历的过程中记录我们遍历过的节点，如果遇到next节点为NULL的节点，说明没有环，如果遇到之前遍历过的节点，证明有环。<br>②  快慢指针 -&gt; 设置一个快指针一个慢指针，如果链表有环，则快慢指针一定会在环中相遇，但是如果没有环，快慢指针永远不会相遇。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    ListNode *p = head, *q = head-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p != q &amp;&amp; q &amp;&amp; q-&gt;next) &#123;</span><br><span class="line">      p = p-&gt;next;</span><br><span class="line">      <span class="comment">// q-&gt;next不为空才能获取q-&gt;next-&gt;next</span></span><br><span class="line">      q = q-&gt;next-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 代码执行到这里的时候，可能是①相遇了、②q-&gt;next为空</span></span><br><span class="line">    <span class="keyword">return</span> q &amp;&amp; q-&gt;next; <span class="comment">// 如果q不为空并且q-&gt;next也不为空，那么就代表成环了</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><br/><strong>二、找到环形链表的初始点</strong> (LeetCode142)<br><img src="/images/278.png"></p>
+<p><strong>解题思路：</strong><br>首先找到快慢节点相遇的位置，该位置距离环的起点与链表的起点到环的起点的距离一致。<br>那么为什么找到相遇的位置就可以了呢？</p>
+<p><strong>第一种画图：</strong><br>慢指针走过 a+b 的距离，快指针走过 <strong>a+n(b+c)+b</strong> 的距离，由于快指针是慢指针的二倍，所以：<strong>2(a+b) = a+n(b+c)+b</strong> ，而我们实际上也不用关心 n 是多少，可以是任意的数字，因为我们不知道在环内到底多走了多远。<br>所以上述公式可以简化为 <strong>a = c</strong><br><img src="/images/279.png"></p>
+<p><strong>第二种画图：</strong><br>假设环的起始点距离链表起点距离为 a ，设此时快指针到环的起点距离为 x ，因为快指针每次都比慢指针多走一步，那么就还需要 x 步才可以相遇，而此时的环的总长度为 a + x ，所以相遇点到环的起点的距离为 a + x - x = a，而环的起始点的距离链表起点的距离也为 a，所以相等。<br><img src="/images/280.jpg"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">  <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    ListNode *p = head, *q = head;</span><br><span class="line">    <span class="keyword">if</span>(q-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      p = p-&gt;next;</span><br><span class="line">      q = q-&gt;next-&gt;next;</span><br><span class="line">    &#125; <span class="keyword">while</span>(p != q &amp;&amp; q &amp;&amp; q-&gt;next);</span><br><span class="line">    <span class="keyword">if</span>(!q || !q-&gt;next) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="comment">// 以上用来判断是否是环形链表</span></span><br><span class="line">    p = head;</span><br><span class="line">    <span class="keyword">while</span>(p != q) p = p-&gt;next, q = q-&gt;next;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>三、快乐数</strong> (LeetCode202)<br><img src="/images/286.png"></p>
+<p><strong>解题思路：</strong><br>本题从本质上来讲还是一个链表判环的问题，因为给定一个数字，按照某种规则，它所有的变换都是固定的，是否能够达到1也是固定的，所以我们依旧使用快慢指针的做法，来进行判断这个“想象出来的链表”是否成环。例如下图：<br><img src="/images/287.png"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="attr">public</span>:</span><br><span class="line">  <span class="comment">// 获取这个数字所指向的下一个数字</span></span><br><span class="line">  int <span class="function"><span class="title">getNext</span>(<span class="params">int n</span>)</span> &#123;</span><br><span class="line">    int z = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n) &#123;</span><br><span class="line">      z += (n % <span class="number">10</span>) * (n % <span class="number">10</span>);</span><br><span class="line">      n /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> z;</span><br><span class="line">  &#125;</span><br><span class="line">  bool <span class="function"><span class="title">isHappy</span>(<span class="params">int n</span>)</span> &#123;</span><br><span class="line">    int p = n, q = n;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      <span class="comment">// p每次走一步</span></span><br><span class="line">      p = getNext(p);</span><br><span class="line">      <span class="comment">// q每次走两步</span></span><br><span class="line">      q = getNext(getNext(q));</span><br><span class="line">    &#125; <span class="keyword">while</span>(p != q &amp;&amp; q != <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> q == <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/31/%E5%A0%86/" class="archive-article-date">
-  	<time datetime="2021-07-31T12:41:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/31/%E5%A0%86/">堆</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -176,554 +199,63 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/31/%E9%80%92%E5%BD%92%E4%B9%8B%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-07-31T07:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-31</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/12/24/Linux%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/12/11/%E4%BD%A0%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F%E5%A5%B9%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">你的自述？她的自述？</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/31/%E9%80%92%E5%BD%92%E4%B9%8B%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">递归之汉诺塔问题</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/30/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2021-07-29T22:33:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/30/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/29/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-BFS/" class="archive-article-date">
-  	<time datetime="2021-07-29T00:21:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/29/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-BFS/">广度优先搜索(BFS)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/27/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-DFS/" class="archive-article-date">
-  	<time datetime="2021-07-27T10:50:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/27/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-DFS/">深度优先搜索(DFS)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/26/%E9%AB%98%E7%B2%BE%E5%BA%A6%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-07-26T04:47:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/26/%E9%AB%98%E7%B2%BE%E5%BA%A6%E7%AE%97%E6%B3%95/">高精度算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/26/%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-07-25T22:44:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/26/%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E9%97%AE%E9%A2%98/">约瑟夫环问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/24/%E4%BD%BF%E7%94%A8%E6%A0%88%E7%9A%84%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-07-24T00:05:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/24/%E4%BD%BF%E7%94%A8%E6%A0%88%E7%9A%84%E7%AE%97%E6%B3%95/">使用栈的算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/23/%E9%A1%BA%E5%BA%8F%E6%A0%88/" class="archive-article-date">
-  	<time datetime="2021-07-23T11:05:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/23/%E9%A1%BA%E5%BA%8F%E6%A0%88/">顺序栈</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/22/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E4%B8%8E%E8%AF%B7%E6%B1%82%E9%87%8D%E5%AE%9A%E5%90%91%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-07-22T05:02:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/22/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E4%B8%8E%E8%AF%B7%E6%B1%82%E9%87%8D%E5%AE%9A%E5%90%91%E7%9A%84%E5%8C%BA%E5%88%AB/">请求转发与请求重定向的区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javase</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/21/%E9%80%92%E5%BD%92/" class="archive-article-date">
-  	<time datetime="2021-07-21T13:14:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/21/%E9%80%92%E5%BD%92/">递归</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/21/%E6%9A%B4%E5%8A%9B%E6%9E%9A%E4%B8%BE/" class="archive-article-date">
-  	<time datetime="2021-07-21T09:24:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/21/%E6%9A%B4%E5%8A%9B%E6%9E%9A%E4%B8%BE/">暴力枚举</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/20/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="archive-article-date">
-  	<time datetime="2021-07-20T12:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/20/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">进制转换</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/20/xml%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2021-07-20T01:57:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/20/xml%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%A7%A3%E6%9E%90/">xml创建与解析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javase</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/18/final%E5%85%B3%E9%94%AE%E5%AD%97/" class="archive-article-date">
-  	<time datetime="2021-07-17T23:43:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/18/final%E5%85%B3%E9%94%AE%E5%AD%97/">final关键字</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javase</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/07/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/07/page/2/">下一页</a>
-    </nav>
   
 
 
@@ -747,8 +279,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

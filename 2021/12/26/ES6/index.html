@@ -6,25 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>链表常见面试题 | Joyr</title>
+  <title>ES6 | Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="链表相关面试题…">
+  <meta name="description" content="整理关于ES6的知识点…">
 <meta property="og:type" content="article">
-<meta property="og:title" content="链表常见面试题">
-<meta property="og:url" content="http://example.com/2021/12/24/%E9%93%BE%E8%A1%A8%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:title" content="ES6">
+<meta property="og:url" content="http://example.com/2021/12/26/ES6/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="链表相关面试题…">
+<meta property="og:description" content="整理关于ES6的知识点…">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/277.png">
-<meta property="og:image" content="http://example.com/images/278.png">
-<meta property="og:image" content="http://example.com/images/279.png">
-<meta property="og:image" content="http://example.com/images/280.jpg">
-<meta property="article:published_time" content="2021-12-24T06:17:40.000Z">
-<meta property="article:modified_time" content="2021-12-24T10:19:41.323Z">
+<meta property="article:published_time" content="2021-12-26T01:10:56.000Z">
+<meta property="article:modified_time" content="2021-12-26T07:10:37.509Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/277.png">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
   
@@ -65,7 +61,7 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">俗人一个吧.</a></li>
+				<li><a href="/">宇宙小甜心胖子.</a></li>
 	        
 			</ul>
 		</nav>
@@ -127,7 +123,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">俗人一个吧.</a></li>
+					<li style="width: 100%"><a href="/">宇宙小甜心胖子.</a></li>
 		        
 				</ul>
 			</nav>
@@ -142,41 +138,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-链表常见面试题" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ES6" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      链表常见面试题
+      ES6
     </h1>
   
 
         
-        <a href="/2021/12/24/%E9%93%BE%E8%A1%A8%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-12-24T06:17:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-24</time>
+        <a href="/2021/12/26/ES6/" class="archive-article-date">
+  	<time datetime="2021-12-26T01:10:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="链表相关面试题…"><a href="#链表相关面试题…" class="headerlink" title="链表相关面试题…"></a>链表相关面试题…<span id="more"></span></h4><p><strong>一、环形链表</strong> (LeetCode141)</p>
-<img src="/images/277.png">
-
-<p><strong>解决思路：</strong><br>①  依次遍历链表，并且需要另外一个存储空间（哈希表），在遍历的过程中记录我们遍历过的节点，如果遇到next节点为NULL的节点，说明没有环，如果遇到之前遍历过的节点，证明有环。<br>②  快慢指针 -&gt; 设置一个快指针一个慢指针，如果链表有环，则快慢指针一定会在环中相遇，但是如果没有环，快慢指针永远不会相遇。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    ListNode *p = head, *q = head-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p != q &amp;&amp; q &amp;&amp; q-&gt;next) &#123;</span><br><span class="line">      p = p-&gt;next;</span><br><span class="line">      <span class="comment">// q-&gt;next不为空才能获取q-&gt;next-&gt;next</span></span><br><span class="line">      q = q-&gt;next-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 代码执行到这里的时候，可能是①相遇了、②q-&gt;next为空</span></span><br><span class="line">    <span class="keyword">return</span> q &amp;&amp; q-&gt;next; <span class="comment">// 如果q不为空并且q-&gt;next也不为空，那么就代表成环了</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><br/><strong>二、找到环形链表的初始点</strong> (LeetCode142)<br><img src="/images/278.png"></p>
-<p><strong>解题思路：</strong><br>首先找到快慢节点相遇的位置，该位置距离环的起点与链表的起点到环的起点的距离一致。<br>那么为什么找到相遇的位置就可以了呢？</p>
-<p><strong>第一种画图：</strong><br>慢指针走过 a+b 的距离，快指针走过 <strong>a+n(b+c)+b</strong> 的距离，由于快指针是慢指针的二倍，所以：<strong>2(a+b) = a+n(b+c)+b</strong> ，而我们实际上也不用关心 n 是多少，可以是任意的数字，因为我们不知道在环内到底多走了多远。<br>所以上述公式可以简化为 <strong>a = c</strong><br><img src="/images/279.png"></p>
-<p><strong>第二种画图：</strong><br>假设环的起始点距离链表起点距离为 a ，设此时快指针到环的起点距离为 x ，因为快指针每次都比慢指针多走一步，那么就还需要 x 步才可以相遇，而此时的环的总长度为 a + x ，所以相遇点到环的起点的距离为 a + x - x = a，而环的起始点的距离链表起点的距离也为 a，所以相等。<br><img src="/images/280.jpg"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">  <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    ListNode *p = head, *q = head;</span><br><span class="line">    <span class="keyword">if</span>(q-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      p = p-&gt;next;</span><br><span class="line">      q = q-&gt;next-&gt;next;</span><br><span class="line">    &#125; <span class="keyword">while</span>(p != q &amp;&amp; q &amp;&amp; q-&gt;next);</span><br><span class="line">    <span class="keyword">if</span>(!q || !q-&gt;next) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="comment">// 以上用来判断是否是环形链表</span></span><br><span class="line">    p = head;</span><br><span class="line">    <span class="keyword">while</span>(p != q) p = p-&gt;next, q = q-&gt;next;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
+        <h4 id="整理关于ES6的知识点…"><a href="#整理关于ES6的知识点…" class="headerlink" title="整理关于ES6的知识点…"></a>整理关于ES6的知识点…<span id="more"></span></h4>
       
 
       
@@ -189,7 +171,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -200,57 +186,6 @@
       
 
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/12/24/%E9%93%BE%E8%A1%A8%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
       <div class="clearfix"></div>
     </div>
   </div>
@@ -259,18 +194,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/12/24/Linux%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux学习
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/12/11/%E4%BD%A0%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F%E5%A5%B9%E7%9A%84%E8%87%AA%E8%BF%B0%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">你的自述？她的自述？</div>
+    <a href="/2021/12/24/Linux%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
