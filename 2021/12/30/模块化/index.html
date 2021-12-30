@@ -6,24 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>子类对象实例化的全过程 | Joyr</title>
+  <title>模块化 | Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本篇文章主要讲述了子类对象实例化的全过程">
+  <meta name="description" content="浅谈关于JS中的模块化…">
 <meta property="og:type" content="article">
-<meta property="og:title" content="子类对象实例化的全过程">
-<meta property="og:url" content="http://example.com/2021/06/20/%E5%AD%90%E7%B1%BB%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:title" content="模块化">
+<meta property="og:url" content="http://example.com/2021/12/30/%E6%A8%A1%E5%9D%97%E5%8C%96/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="本篇文章主要讲述了子类对象实例化的全过程">
+<meta property="og:description" content="浅谈关于JS中的模块化…">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/9.png">
-<meta property="og:image" content="http://example.com/images/10.png">
-<meta property="og:image" content="http://example.com/images/8.png">
-<meta property="article:published_time" content="2021-06-20T02:09:04.000Z">
-<meta property="article:modified_time" content="2021-12-12T12:08:22.759Z">
+<meta property="article:published_time" content="2021-12-30T01:04:02.000Z">
+<meta property="article:modified_time" content="2021-12-30T03:55:34.596Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="javase">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/9.png">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
   
@@ -141,38 +138,130 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-子类对象实例化的全过程" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-模块化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      子类对象实例化的全过程
+      模块化
     </h1>
   
 
         
-        <a href="/2021/06/20/%E5%AD%90%E7%B1%BB%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2021-06-20T02:09:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-20</time>
+        <a href="/2021/12/30/%E6%A8%A1%E5%9D%97%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2021-12-30T01:04:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="本篇文章主要讲述了子类对象实例化的全过程"><a href="#本篇文章主要讲述了子类对象实例化的全过程" class="headerlink" title="本篇文章主要讲述了子类对象实例化的全过程"></a>本篇文章主要讲述了子类对象实例化的全过程<span id="more"></span></h4><p><strong>子类对象实例化的全过程：</strong></p>
-<blockquote>
-<blockquote>
-<p>从结果上来看：子类继承父类以后就获取了父类中声明的属性或方法(继承性)，创建子类的对象，在堆空间中就会加载父类中所有的属性和方法.<br>从过程上来看：当我们通过子类的构造器创建子类的对象时，我们一定会直接或者间接的调用其父类的构造器，继而调用父类的父类的构造器…直到调用到java.lang.Object类中空参的构造器为止，正因为加载过所有的父类的结构，所以可以看到内存中存在父类中的结构，子类对象才可以进行调用.<br>虽然创建子类的对象时，调用了父类的构造器，但是自始至终都只创建了一个对象，即为new的对象.<br>this()和super()调用语句不可以同时存在一个构造器中.<br>super()或this()调用语句只能作为构造器中第第一句出现，原因是：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无论在通过那个构造器创建子类对象都需要保证先初始化父类，目的是当子类继承于父类后，继承父类中的所有的属性和方法，因此子类必须要知道父类中是如何初始化的.</p>
-</blockquote>
-</blockquote>
-<p>既然上面有说到构造器，就要引出两个关键字： this、super.</p>
-<p>当我们在创建对象时，总会调用该类的构造器，构造器之间又可以相互调用 ： （ this(参数列表) ） ，假设该类中有n个重载的构造器，那么我们最多就可以调用n-1个this，想一想为什么呢？如果存在n个this关键字会怎么样呢？<br>如下图所示，是不是会形成一个环状从而无限制的调用，这种情况明显是错误的，所以一定会存在一个指向父类的构造器。</p>
-<img src="/images/9.png">
+        <h4 id="浅谈关于JS中的模块化…"><a href="#浅谈关于JS中的模块化…" class="headerlink" title="浅谈关于JS中的模块化…"></a>浅谈关于JS中的模块化…<span id="more"></span></h4><p><strong>随着JavaScript语言的发展，社区中产生了很多模块标准。在认识这些标准的同时，也要了解其背后的思想！</strong></p>
+<h4 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h4><p>在Node.js的实现中采用了CommonJS标准的一部分,并在其基础上进行了一些调整。我们所说的CommonJS和Node.js中的实现并不完全一样，现在所说的CommonJS其实是Node.js中的版本。而非它的原始定义。</p>
+<p><strong>CommonJS中规定每个文件是一个模块</strong>，每一个模块会形成一个属于模块自身的作用域，所有的变量和函数只有自己可以访问，对外是不可见的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;calc.js&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;index.js&#x27;</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;./calc.js&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(name) <span class="comment">// index.js </span></span><br></pre></td></tr></table></figure>
 
-<p>下面就是正确的使用this指向构造器的使用：<br><img src="/images/10.png"></p>
-<p>所以这里抛出一个结论： <strong>一个类中有n个构造器，则最多存在n-1个this指向构造器，最少一个super指向构造器.</strong><br><img src="/images/8.png"></p>
+<p>这个例子可以看出 calc.js 中的变量并不会影响 index.js 中的变量，可见每个模块是拥有各自的作用域的。</p>
+<h5 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h5><p><strong>导出是一个模块向外暴露自身的唯一方式</strong>，在CommonJS中，通过module.exports可以导出模块中的内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该文件导出了一个name属性和一个add函数，外面的文件就可以进行引入</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;calc&#x27;</span>,</span><br><span class="line">  <span class="attr">add</span>: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每一个CommonJS模块内部会有一个module对象用于存放当前模块的信息，可以理解为在每个模块的最开始定义了下面的对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">module</span> = &#123;...&#125;</span><br><span class="line"><span class="comment">// 模块自身逻辑</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>CommonJS也提供了另一种简化的导出方式</strong> — 直接使用exports。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span>.name = <span class="string">&#x27;calc&#x27;</span></span><br><span class="line"><span class="built_in">exports</span>.add = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之所以可以使用这种简便方法，是因为CommonJS在每个模块的首部都添加了以下的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">module</span> = &#123;</span><br><span class="line">  <span class="attr">exports</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">exports</span> = <span class="built_in">module</span>.exports</span><br></pre></td></tr></table></figure>
+
+<p>因此，在 exports.name 中赋值，相当于在 module.exports 对象上添加了一个属性，本质上是一样的。</p>
+<p><strong>注意：不要直接给exports赋值</strong>，否则会导致其失效</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;calc&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述的赋值就会导致exports所指向的不再是module.exports对象，所以之后再通过exports简化方式进行导出的时候，就会导致name属性失效，并不会导出。</p>
+<p><strong>不恰当的把module.exports与exports混用：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span>.add = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;calc&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码先通过exports导出了add属性，然后将module.exports重新赋值为另一个对象，这会导致module.exports之前所指向的对象连同里面的add属性一并丢失，最后导出的之后name属性。</p>
+<p>导出语句不代表模块的末尾，在实际使用中，为了提高可读，建议将 module.exports 和 exports 语句放在模块的末尾。</p>
+<h5 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h5><p><strong>在CommonJS中使用require进行模块导入。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">add</span>: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">const</span> calc = <span class="built_in">require</span>(<span class="string">&#x27;./calc.js&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> sum = calc.add</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p>在上面代码中，我们在index.js中导入的calc模块，并且调用了它的add函数。</p>
+<p><strong>require一个模块时的两种情况</strong><br>① require 的模块是<strong>第一次被加载</strong>。这时会首先执行该模块，然后导出内容。<br>② require 的模块<strong>曾被加载过</strong>。这时该模块的代码不会再次执行，而是直接导出上次执行后得到的结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;running calc.js&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;calc&#x27;</span>,</span><br><span class="line">  <span class="attr">add</span>: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="built_in">require</span>(<span class="string">&#x27;./calc.js&#x27;</span>).add</span><br><span class="line"><span class="keyword">const</span> sum = add(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;sum: &#x27;</span>, sum)</span><br><span class="line"><span class="keyword">const</span> moduleName = <span class="built_in">require</span>(<span class="string">&#x27;./calc.js&#x27;</span>).name</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;end&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>控制台输出结果：从结果上看，虽然我们有两个地方require了calc.js，但是其内部的代码只执行了一遍。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">running calc.js</span><br><span class="line"><span class="attr">sum</span>: <span class="number">5</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p><strong>上述的原因是</strong>，我们之前说模块中有一个module对象用来存放其信息，这个对象中有一个属性loaded用于记录该模块是否被加载过。他的值默认为false，当模块第一次被加载和执行过后，该值会被设置为true，后面再次加载时检查module.loaded为true，则不会再次执行模块代码。</p>
+<p><strong>如不需要获取其导出的内容，只想执行它，直接使用require即可</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;./task.js&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>require函数可以接收表达式，可以借助这个特性动态指定模块的路径</strong>，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> moduleNames = [<span class="string">&#x27;foo.js&#x27;</span>, <span class="string">&#x27;bar.js&#x27;</span>]</span><br><span class="line">moduleNames.forEach(<span class="function"><span class="params">name</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">&#x27;./&#x27;</span> + name)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="ES6-Module"><a href="#ES6-Module" class="headerlink" title="ES6 Module"></a>ES6 Module</h4><p>在ES6中，JavaScript具备了模块这一特性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;calc&#x27;</span>,</span><br><span class="line">  <span class="attr">add</span>: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="keyword">import</span> calc <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br><span class="line"><span class="keyword">const</span> sum = calc.add(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(sum)</span><br></pre></td></tr></table></figure>
+
+<p>在 ES6 Module 中,也是将每个文件都作为一个模块,每个模块都拥有自身的作用域,不同的就是导入导出语句。</p>
+<p><strong>ES6 Module会自动采用严格模式</strong>，这在ES5中是一个可选项，在ES6  Module中不管开头是否有 “use strict”，都会采用严格模式。</p>
+<h5 id="导出-1"><a href="#导出-1" class="headerlink" title="导出"></a>导出</h5><p><strong>在 ES6 Module 中使用export命令来导出模块，导出有两种形式</strong><br>① 命名导出<br>② 默认导出</p>
+<p><strong>一个模块可以有多个命名导出：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 写法一：</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> name = <span class="string">&#x27;calc&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法二：</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;calc&#x27;</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">	name,</span><br><span class="line">  add</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在使用命名导出时，可以通过ad关键字对变量重新命名：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;calc&#x27;</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; name, add <span class="keyword">as</span> sum &#125; <span class="comment">// 在导入是即为 name 和 sum</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>与命名导出不同的是，模块的默认导出只能有一个：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;calc&#x27;</span>,</span><br><span class="line">  <span class="attr">add</span>: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="导入-1"><a href="#导入-1" class="headerlink" title="导入"></a>导入</h5><p><strong>ES6 Module中使用import语法导入模块。</strong></p>
+<p><strong>加载带有命名导出的模块</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;calc&#x27;</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; name, add &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; name, add &#125; <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p>加载带有命名导出的模块时，import后面要跟一对大括号来将导入的变量名包裹起来，并且这些变量名必须与导出的变量名完全一致。<strong>导入变量的效果相当于在当前作用域声明了这些变量，并且不可以对其进行修改，都是只读的。</strong></p>
+<p><strong>与命名导出类似，我们可以通过 as 关键字对导入的变量重命名。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; name, add <span class="keyword">as</span> sum &#125; <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>在导入多个变量时，可以采用整体导入的方式</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> calc <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(calc.add(<span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(calc.name) <span class="comment">// calc</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>默认导出</strong><br>对于默认导出来说，import后面直接跟变量名，并且这个名字可以自由指定，它指向了calc.js中默认导出的对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> ad calc &#125; <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>从原理上可以像上面这样理解。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;calc&#x27;</span>,</span><br><span class="line">  <span class="attr">add</span>: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> calc <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(calc.add(<span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>两种导入混合的例子：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&quot;name&quot;</span></span><br><span class="line"><span class="keyword">export</span> &#123; name &#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">add</span>: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> sum, &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(name) <span class="comment">// calc</span></span><br><span class="line"><span class="built_in">console</span>.log(sum.add(<span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>复合写法</strong><br>在工程中有时需要将一个模块导入之后立即导出，此时可以采用复合写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; name, add &#125; <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>复合写法目前只支持被导入的模块，通过命名导出的方式暴露出来的变量，<strong>默认导出则没有对应的复合形式，只能将导入和导出拆开写。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> calc <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> calc</span><br></pre></td></tr></table></figure>
+
+<h4 id="二者的区别"><a href="#二者的区别" class="headerlink" title="二者的区别"></a>二者的区别</h4><p><strong>静态与动态：</strong><br>CommonJS与ES6 Module最本质的区别在于前者对模块依赖的解决师”动态的”,而后者是”静态的”。在这里“动态”的含义是，模块依赖关系的简历发生在代码运行阶段，而“静态”则是模块依赖关系的建立发生在代码编译阶段。</p>
+<p>CommonJS的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;calc&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="built_in">require</span>(<span class="string">&#x27;./calc.js&#x27;</span>).name</span><br></pre></td></tr></table></figure>
+
+<p>因为CommonJS中会将module.exports对象作为require函数的返回值进行返回，而require的模块路径可以动态指定，我们甚至可以通过if语句在其过程中判断是否加载某个模块，所以在CommonJS模块在执行前，并没有办法确定明确的依赖关系，模块的导入，导出均发生在代码的运行阶段。</p>
+<p>ES6 Module例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> name = <span class="string">&#x27;calc&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;./calc.js&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>ES6 Module的导入、导出语句都是声明式的，它不支持导入的路径是一个表达式，并且导入、导出语句必须位于模块的顶层作用域（比如不能放在if语句中），因此我们可以说，ES6 Module是一种静态的模块结构,在ES6代码的编译阶段就可以分析处模块的依赖关系。</p>
+<p><strong>ES6 Module 相比 CommonJS的几点优势</strong></p>
+<blockquote>
+<p>① <strong>死代码检测与排除</strong><br>通过静态分析可以在打包时去掉这些未曾使用过的模块，以减少打包资源体积<br>② <strong>模块变量类型检查</strong><br>ES6 Module的静态模块结构有助于确保模块之间传递的值或接口类型是正确的<br>③ <strong>编译器优化</strong><br>CommonJS中本质上导入都是一个对象，而ES6 Module支持导入变量,减少了引用层级 </p>
+</blockquote>
+<p><strong>值拷贝与动态映射</strong><br>在导入一个模块时，对于CommonJS来说获取的是一份导出值的拷贝，而在ES6 Module中则是值的动态绑定，并且这个映射是只读的。 </p>
+<p><strong>CommonJS中的值拷贝</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calc.js</span></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">count</span>: count,</span><br><span class="line">  <span class="attr">add</span>: <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    count++</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">var</span> count = <span class="built_in">require</span>(<span class="string">&#x27;./calc.js&#x27;</span>).count</span><br><span class="line"><span class="keyword">var</span> add = <span class="built_in">require</span>(<span class="string">&#x27;./calc.js&#x27;</span>).add</span><br><span class="line"><span class="built_in">console</span>.log(count) <span class="comment">// 0  这里的count是对calc.js中的count值的拷贝</span></span><br><span class="line">add(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(count) <span class="comment">// 0  calc.js中的变量值的改变不会改变对这里的拷贝值造成影响</span></span><br><span class="line">count += <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(count) <span class="comment">// 1 拷贝的值可以修改</span></span><br></pre></td></tr></table></figure>
+
+<p>index.js 中的count是对calc.js中count的一份值拷贝，因此在调用add函数时，虽然更改了原本的calc.js的值，但是并不会对index.js中导入时创建的副本造成影响</p>
 
       
 
@@ -186,7 +275,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javase</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -205,18 +298,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/06/20/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          稀疏数组
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/06/19/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">抽象类和接口</div>
+    <a href="/2021/12/28/vue2%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%88%92%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue2</div>
       <i class="icon-circle-right"></i>
     </a>
   
