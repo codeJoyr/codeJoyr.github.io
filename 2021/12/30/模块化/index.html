@@ -16,7 +16,7 @@
 <meta property="og:description" content="浅谈关于JS中的模块化…">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-30T01:04:02.000Z">
-<meta property="article:modified_time" content="2021-12-30T04:31:30.242Z">
+<meta property="article:modified_time" content="2022-01-02T03:44:01.337Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
@@ -281,6 +281,14 @@
 <blockquote>
 <p>① index.js 中导入了 foo.js，此时开始执行foo.js中的代码<br>② 在foo.js中导入的bar.js，此时进入bar.js中<br>③ 此时的bar.js第一行又导入的foo.js，但是不会去执行foo.js中的代码，只会取其导出的值，因为foo已经被导入一次了，这时在打印foo对象时是打印 module.exports 所指向的对象，但是此对象现在为空对象，因为foo.js此时并没有执行完毕<br>④ bar.js执行完毕，将执行权交回 foo.js<br>⑤ foo.js从require语句继续向下执行，在控制台打印 bar，这时获取的是 ‘This is bar.js’ ，继而整个流程结束。</p>
 </blockquote>
+<p>使用ES6 Module的方式重写上面的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// foo.js</span></span><br><span class="line"><span class="keyword">import</span> bar <span class="keyword">from</span> <span class="string">&#x27;bar.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;value of bar:&#x27;</span>, bar)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">&#x27;This is foo.js&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bar.js</span></span><br><span class="line"><span class="keyword">import</span> foo <span class="keyword">from</span> <span class="string">&#x27;foo.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;value of foo&#x27;</span>, foo)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">&#x27;This is bar.js&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> foo <span class="keyword">from</span> <span class="string">&#x27;./foo.js&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>执行结果：</strong></p>
+<blockquote>
+<p>value of foo: undefined<br>value of bar: This is bar.js</p>
+</blockquote>
+<p>很遗憾，在bar.js中无法得到foo.js正确的导出值，只不过与CommonJS默认的导出一个空对象不同，这里获取到的是undefined。</p>
 
       
 
