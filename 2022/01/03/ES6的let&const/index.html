@@ -16,7 +16,7 @@
 <meta property="og:description" content="关于声明字面量的关键字…">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-03T02:54:31.000Z">
-<meta property="article:modified_time" content="2022-01-03T04:54:32.323Z">
+<meta property="article:modified_time" content="2022-01-03T08:41:26.951Z">
 <meta property="article:author" content="Joyr">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="JavaScript">
@@ -164,6 +164,21 @@
 <li>let、count在其他编程语言中都是有的，所以也不是新鲜的关键字</li>
 <li>但是let、count确确实实给JavaScript带来了一下不一样的东西</li>
 </ul>
+</blockquote>
+<h5 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">&quot;foo&quot;</span></span><br><span class="line"><span class="keyword">let</span> bar = <span class="string">&quot;bar&quot;</span></span><br><span class="line"><span class="keyword">const</span> baz = <span class="string">&quot;baz&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>const本质上是传递的值不可以修改</strong><br>如果传递的是一个引用类型(内存地址),可以通过引用找到相应的对象，去修改对象内部的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// const constant(常量/衡量)</span></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&quot;abc&quot;</span></span><br><span class="line"><span class="comment">// name = &quot;cba&quot; // TypeError: Assignment to constant variable.</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">foo</span>: <span class="string">&quot;foo&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// obj = &#123;&#125; // TypeError: Assignment to constant variable.</span></span><br><span class="line">obj.foo = <span class="string">&quot;aaa&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.foo) <span class="comment">// aaa</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>通过let/count定义的变量名是不可以重复定义的</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> a = &#123;&#125; <span class="comment">// SyntaxError: Identifier &#x27;a&#x27; has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>let/count的作用域提升</strong><br>let、count和var的另一个重要区别是作用域提升，我们直到var声明的变量是会进行作用域提升的，但是如果我们使用let声明的变量，在声明之前访问会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">&quot;foo&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log(bar) // ReferenceError: Cannot access &#x27;bar&#x27; before initialization</span></span><br><span class="line"><span class="keyword">let</span> bar = <span class="string">&quot;bar&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>那么是不是意味着foo变量只有在代码执行阶段才会创建的呢？</p>
+<blockquote>
+<p>事实上并不是这样的，我们看一下ECMA262对let和const的描述<br>这些变量会被创建在包含他们的词法环境被实例化时，但是不可以访问他们，直到词法绑定被求值</p>
 </blockquote>
 
       
@@ -330,15 +345,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">自述</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">自述</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -362,11 +377,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
