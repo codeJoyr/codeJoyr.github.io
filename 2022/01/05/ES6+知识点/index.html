@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021/8 | Joyr</title>
+  <title>ES6+知识点 | Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Joyr">
-<meta property="og:url" content="http://example.com/archives/2021/08/index.html">
+  <meta name="description" content="关于ES6+知识点的补充…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6+知识点">
+<meta property="og:url" content="http://example.com/2022/01/05/ES6+%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="关于ES6+知识点的补充…">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-05T04:28:53.000Z">
+<meta property="article:modified_time" content="2022-01-05T04:40:23.678Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="前端博客，后端博客，java,vue.js,jquery,html5,react">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
@@ -135,74 +138,42 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ES6+知识点" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES6+知识点
+    </h1>
+  
+
+        
+        <a href="/2022/01/05/ES6+%E7%9F%A5%E8%AF%86%E7%82%B9/" class="archive-article-date">
+  	<time datetime="2022-01-05T04:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-05</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="关于ES6-知识点的补充…"><a href="#关于ES6-知识点的补充…" class="headerlink" title="关于ES6+知识点的补充…"></a>关于ES6+知识点的补充…<span id="more"></span></h4><p><strong>ES7中新增的Array Includes与指数运算符</strong></p>
+<p><strong>Array Includes</strong><br>在ES7之前，如果我们想判断一个数组中是否包含某个元素，需要通过indexOf获取结果，并且判断是否为-1。<br>在ES7中,我们可以通过includes来判断一个数组中是否包含一个指定的元素,根据情况,如果包含则返回true，否则返回false</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> names = [<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;cba&#x27;</span>, <span class="string">&#x27;nba&#x27;</span>, <span class="string">&#x27;mba&#x27;</span>]</span><br><span class="line"><span class="keyword">if</span> (names.indexOf(<span class="string">&#x27;abc&#x27;</span>) !== -<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;包含&quot;</span>) <span class="comment">// 包含</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(names.includes(<span class="string">&#x27;abc&#x27;</span>)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;包含&quot;</span>) <span class="comment">// 包含</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>指数运算符</strong> 使用 <strong>**</strong> 来进行指数运算</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span></span><br><span class="line"><span class="built_in">console</span>.log(a * a * a) <span class="comment">// 27</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.pow(a, <span class="number">3</span>)) <span class="comment">// 27</span></span><br><span class="line"><span class="built_in">console</span>.log(a ** <span class="number">3</span>) <span class="comment">// 27</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>ES8</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/27/%E5%B0%8F%E7%B1%B3%E4%B8%BB%E9%A1%B5%E9%9D%A2%E7%BB%83%E4%B9%A0/" class="archive-article-date">
-  	<time datetime="2021-08-27T00:15:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/27/%E5%B0%8F%E7%B1%B3%E4%B8%BB%E9%A1%B5%E9%9D%A2%E7%BB%83%E4%B9%A0/">小米首屏关键部位练习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/23/CSS%E5%85%B6%E4%BB%96%E6%A0%B7%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-08-22T23:43:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/23/CSS%E5%85%B6%E4%BB%96%E6%A0%B7%E5%BC%8F/">CSS其他样式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -212,307 +183,61 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/19/%E7%AE%80%E5%8D%95%E5%B8%83%E5%B1%80/" class="archive-article-date">
-  	<time datetime="2021-08-19T01:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/05/ES6%E6%96%B0%E5%A2%9E%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6新增的数据类型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/19/%E7%AE%80%E5%8D%95%E5%B8%83%E5%B1%80/">简单布局</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/15/CSS%E6%A0%B7%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-08-15T09:14:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/15/CSS%E6%A0%B7%E5%BC%8F/">CSS样式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/15/CSS%E9%80%89%E6%8B%A9%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2021-08-14T23:16:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/15/CSS%E9%80%89%E6%8B%A9%E5%99%A8/">CSS选择器</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/14/HTML%E6%A0%87%E7%AD%BE/" class="archive-article-date">
-  	<time datetime="2021-08-14T01:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/14/HTML%E6%A0%87%E7%AD%BE/">HTML标签</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/06/%E8%B4%AA%E5%BF%83%E4%B8%93%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-08-06T03:39:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/06/%E8%B4%AA%E5%BF%83%E4%B8%93%E9%A2%98/">贪心专题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/04/%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-08-03T23:32:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/04/%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95/">二分算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/02/%E5%9B%BE/" class="archive-article-date">
-  	<time datetime="2021-08-02T03:34:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/02/%E5%9B%BE/">图</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -535,8 +260,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
