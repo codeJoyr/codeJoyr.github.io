@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 前端 | Joyr</title>
+  <title>Proxy &amp; Reflect | Joyr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Joyr">
-<meta property="og:url" content="http://example.com/tags/%E5%89%8D%E7%AB%AF/page/2/index.html">
+  <meta name="description" content="浅谈响应式原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proxy &amp; Reflect">
+<meta property="og:url" content="http://example.com/2022/01/07/Proxy-Reflect/index.html">
 <meta property="og:site_name" content="Joyr">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="浅谈响应式原理">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/295.png">
+<meta property="og:image" content="http://example.com/images/296.png">
+<meta property="article:published_time" content="2022-01-07T04:25:32.000Z">
+<meta property="article:modified_time" content="2022-01-10T02:40:36.237Z">
 <meta property="article:author" content="Joyr">
-<meta property="article:tag" content="前端博客，后端博客，java,vue.js,jquery,html5,react">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/295.png">
   
     <link rel="alternative" href="/atom.xml" title="Joyr" type="application/atom+xml">
   
@@ -135,36 +141,96 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Proxy-Reflect" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Proxy &amp; Reflect
+    </h1>
+  
+
+        
+        <a href="/2022/01/07/Proxy-Reflect/" class="archive-article-date">
+  	<time datetime="2022-01-07T04:25:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-07</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="浅谈响应式原理"><a href="#浅谈响应式原理" class="headerlink" title="浅谈响应式原理"></a>浅谈响应式原理<span id="more"></span></h4><h4 id="监听对象的操作"><a href="#监听对象的操作" class="headerlink" title="监听对象的操作"></a>监听对象的操作</h4><p><strong>我们先来看一个需求：有一个对象，我们希望监听这个对象中的属性被设置或获取的过程</strong><br>我们可以通过之前的属性描述符中的存储属性描述符来做到。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;why&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj).forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> value = obj[key]</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">    <span class="attr">get</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`监听到obj对象的<span class="subst">$&#123;key&#125;</span>属性被访问了`</span>)</span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">set</span>: <span class="function"><span class="keyword">function</span> (<span class="params">newValue</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`监听到obj对象的<span class="subst">$&#123;key&#125;</span>属性被设置值`</span>)</span><br><span class="line">      value = newValue</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.name)</span><br><span class="line">obj.name = <span class="string">&quot;joyr&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.name)</span><br><span class="line"><span class="comment">/* 运行结果：</span></span><br><span class="line"><span class="comment">监听到obj对象的name属性被访问了</span></span><br><span class="line"><span class="comment">why</span></span><br><span class="line"><span class="comment">监听到obj对象的name属性被设置值</span></span><br><span class="line"><span class="comment">监听到obj对象的name属性被访问了</span></span><br><span class="line"><span class="comment">joyr</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>但是这样做有什么缺点呢？</strong></p>
+<blockquote>
+<ol>
+<li>首先，Object.defineProperty设计的初衷，不是为了去监听截止一个对象中的所有的属性的。我们在定义某些属性的时候，初衷其实是定义普通的属性，但是后来我们强行将它变成了数据属性描述符。</li>
+<li>其次，如果我们湘江厅更加丰富的操作，比如新增属性、删除属性，那么Object.defineProperty是无能为力的。</li>
+<li>所以我们要知道，存储数据描述符设计的初衷并不是为了去监听一个完整的对象。</li>
+</ol>
+</blockquote>
+<h4 id="Proxy基本使用"><a href="#Proxy基本使用" class="headerlink" title="Proxy基本使用"></a>Proxy基本使用</h4><p>在ES6中，新增了一个Proxy类，这个类从名字就可以看出来，是用于帮助我们创建一个代理的：</p>
+<blockquote>
+<p>也就是说，如果我们希望监听一个对象的相关操作，那么我们可以先创建一个代理对象（Proxy对象）<br>之后对该对象的所有操作，都通过代理对象来完成，代理对象可以监听我们想要对原对象进行哪些操作</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;why&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objProxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">  <span class="comment">// 获取值时的捕获器</span></span><br><span class="line">  <span class="attr">get</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`监听到对象的<span class="subst">$&#123;key&#125;</span>属性被访问了`</span>, target)</span><br><span class="line">    <span class="keyword">return</span> target[key]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 设置值时的捕获器</span></span><br><span class="line">  <span class="attr">set</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, newValue</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`监听到对象的<span class="subst">$&#123;key&#125;</span>属性被设置值`</span>, target)</span><br><span class="line">    target[key] = newValue</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(objProxy.name)</span><br><span class="line"><span class="built_in">console</span>.log(objProxy.age)</span><br><span class="line"></span><br><span class="line">objProxy.name = <span class="string">&quot;joyr&quot;</span></span><br><span class="line">objProxy.age = <span class="number">30</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">监听到对象的name属性被访问了 &#123; name: &#x27;why&#x27;, age: 18 &#125;</span></span><br><span class="line"><span class="comment">why</span></span><br><span class="line"><span class="comment">监听到对象的age属性被访问了 &#123; name: &#x27;why&#x27;, age: 18 &#125;</span></span><br><span class="line"><span class="comment">18</span></span><br><span class="line"><span class="comment">监听到对象的name属性被设置值 &#123; name: &#x27;why&#x27;, age: 18 &#125;</span></span><br><span class="line"><span class="comment">监听到对象的age属性被设置值 &#123; name: &#x27;joyr&#x27;, age: 18 &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>如果我们想要侦听某些具体的操作，那么就可以再handler中添加对应的捕获器（Trap）</p>
+<p><strong>set和get分别对应的是函数类型</strong></p>
+<blockquote>
+<p>set函数有四个参数：</p>
+<blockquote>
+<p>target：目标对象（侦听的对象）<br>property：将被设置的属性key<br>value：新属性值<br>receiver：调用的代理对象</p>
+</blockquote>
+<p>get函数有三个参数：</p>
+<blockquote>
+<p>target：目标对象（侦听的对象）<br>property：被获取的属性key<br>receiver：调用的代理对象</p>
+</blockquote>
+</blockquote>
+<p><strong>Proxy的其余捕获器</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;why&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objProxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">  <span class="comment">// 获取值时的捕获器</span></span><br><span class="line">  <span class="attr">get</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`监听到对象的<span class="subst">$&#123;key&#125;</span>属性被访问了`</span>, target)</span><br><span class="line">    <span class="keyword">return</span> target[key]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 设置值时的捕获器</span></span><br><span class="line">  <span class="attr">set</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, newValue</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`监听到对象的<span class="subst">$&#123;key&#125;</span>属性被设置值`</span>, target)</span><br><span class="line">    target[key] = newValue</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 监听in的捕获器</span></span><br><span class="line">  <span class="attr">has</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`监听到对象的<span class="subst">$&#123;key&#125;</span>属性的in操作`</span>, target)</span><br><span class="line">    <span class="keyword">return</span> key <span class="keyword">in</span> target</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 监听delete的捕获器</span></span><br><span class="line">  <span class="attr">deleteProperty</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`监听到对象的<span class="subst">$&#123;key&#125;</span>属性的delete操作`</span>, target)</span><br><span class="line">    <span class="keyword">delete</span> target[key]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// in 操作符</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;name&quot;</span> <span class="keyword">in</span> objProxy)</span><br><span class="line"><span class="comment">// delete 操作符</span></span><br><span class="line"><span class="keyword">delete</span> objProxy.name</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">运行结果：</span></span><br><span class="line"><span class="comment">监听到对象的name属性的in操作 &#123; name: &#x27;why&#x27;, age: 18 &#125;</span></span><br><span class="line"><span class="comment">true</span></span><br><span class="line"><span class="comment">监听到对象的name属性的delete操作 &#123; name: &#x27;why&#x27;, age: 18 &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<img src="/images/295.png">
+
+<h4 id="Reflect的作用"><a href="#Reflect的作用" class="headerlink" title="Reflect的作用"></a>Reflect的作用</h4><p>Reflect也是ES6新增的一个API，它是<strong>一个对象</strong>，字面的意思是反射。</p>
+<p><strong>Reflect有什么作用？</strong></p>
+<blockquote>
+<ul>
+<li>它主要是提供了很多操JavaScript对象的方法，有点像<strong>Object中操作对象的方法</strong></li>
+<li>比如Reflect.getPrototypeOf(target)，类似于Object.setPrototypeOf()</li>
+</ul>
+</blockquote>
+<p>如果我们有Object可以做这些操作，那么<strong>为什么还需要有Reflect这样的新增对象呢？</strong></p>
+<blockquote>
+<ul>
+<li>这是因为在早期的ECMA规范中，没有考虑这种对 <strong>对象本身</strong> 的操作如何设计会更加规范，所以将这些API放到了Object上面</li>
+<li>但是Object作为一个构造函数，这些操作实际上<strong>放到它身上并不合适</strong></li>
+<li>另外还包含一些<strong>类似于 in 、delete 操作符</strong>，让JS看起来很奇怪</li>
+<li>所以在ES6中新增了Reflect，让我们这些操作都集中到了Reflect对象上</li>
+</ul>
+</blockquote>
+<p><strong>Proxy与Reflect一起使用</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;why&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objProxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">  <span class="attr">set</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, newValue</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">Reflect</span>.set(target, key, newValue)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">get</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, key)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(objProxy.name) <span class="comment">// why</span></span><br><span class="line">objProxy.name = <span class="string">&quot;joyr&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(objProxy.name) <span class="comment">// joyr</span></span><br></pre></td></tr></table></figure>
+
+<img src="/images/296.png">
+
+<p><strong>receiver参数</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">_name</span>: <span class="string">&quot;joyr&quot;</span>,</span><br><span class="line">  <span class="keyword">get</span> <span class="title">name</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>._name</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">set</span> <span class="title">name</span>(<span class="params">newName</span>) &#123;</span><br><span class="line">    <span class="built_in">this</span>._name = newName</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objProxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">  <span class="attr">get</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`get操作<span class="subst">$&#123;key&#125;</span>----`</span>, receiver)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, key, receiver)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">set</span>: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, newValue, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`set操作<span class="subst">$&#123;key&#125;</span>----`</span>, key)</span><br><span class="line">    <span class="built_in">Reflect</span>.set(target, key, newValue, receiver)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">objProxy.name = <span class="number">123</span></span><br><span class="line"><span class="built_in">console</span>.log(objProxy.name)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">set操作name---- name</span></span><br><span class="line"><span class="comment">set操作_name---- _name</span></span><br><span class="line"><span class="comment">get操作name---- &#123; _name: 123, name: [Getter/Setter] &#125;</span></span><br><span class="line"><span class="comment">get操作_name---- &#123; _name: 123, name: [Getter/Setter] &#125;</span></span><br><span class="line"><span class="comment">123</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Reflect中的construct的作用</strong><br>可以做到执行其他函数的内容，创建出来的对象是另一个函数的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name</span><br><span class="line">  <span class="built_in">this</span>.age = age</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Teacher</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stu = <span class="keyword">new</span> Student(<span class="string">&#x27;why&#x27;</span>, <span class="number">18</span>)</span><br><span class="line"><span class="built_in">console</span>.log(stu) <span class="comment">// Student &#123; name: &#x27;why&#x27;, age: 18 &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行Student函数中的内容，创建出来的对象是Teacher对象</span></span><br><span class="line"><span class="keyword">const</span> teacher = <span class="built_in">Reflect</span>.construct(Student, [<span class="string">&quot;joyr&quot;</span>, <span class="number">18</span>], Teacher)</span><br><span class="line"><span class="built_in">console</span>.log(teacher) <span class="comment">// Teacher &#123; name: &#x27;joyr&#x27;, age: 18 &#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/16/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8EV8%E5%BC%95%E6%93%8E/" class="archive-article-date">
-  	<time datetime="2021-11-16T02:33:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/16/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8EV8%E5%BC%95%E6%93%8E/">浏览器工作原理与V8引擎</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -180,564 +246,54 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/03/Bootstrap%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2021-10-03T08:14:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-03</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/06/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LeetCode刷题记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/03/Bootstrap%E6%A1%86%E6%9E%B6/">Bootstrap框架</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">前端框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/19/JS%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2021-09-19T00:24:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/19/JS%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/">JS事件对象</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/15/less%E6%95%B4%E7%90%86/" class="archive-article-date">
-  	<time datetime="2021-09-14T23:12:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/15/less%E6%95%B4%E7%90%86/">初见less</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/14/css%E6%96%B0%E7%89%B9%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2021-09-14T03:16:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/14/css%E6%96%B0%E7%89%B9%E6%80%A7/">css新特性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/13/dom%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-09-12T23:07:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/13/dom%E6%A8%A1%E5%9E%8B/">dom模型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/08/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-09-08T10:03:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/08/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/06/JS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-09-06T05:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/06/JS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">JS数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/27/%E5%B0%8F%E7%B1%B3%E4%B8%BB%E9%A1%B5%E9%9D%A2%E7%BB%83%E4%B9%A0/" class="archive-article-date">
-  	<time datetime="2021-08-27T00:15:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/27/%E5%B0%8F%E7%B1%B3%E4%B8%BB%E9%A1%B5%E9%9D%A2%E7%BB%83%E4%B9%A0/">小米首屏关键部位练习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/23/CSS%E5%85%B6%E4%BB%96%E6%A0%B7%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-08-22T23:43:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/23/CSS%E5%85%B6%E4%BB%96%E6%A0%B7%E5%BC%8F/">CSS其他样式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/19/%E7%AE%80%E5%8D%95%E5%B8%83%E5%B1%80/" class="archive-article-date">
-  	<time datetime="2021-08-19T01:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/19/%E7%AE%80%E5%8D%95%E5%B8%83%E5%B1%80/">简单布局</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/15/CSS%E6%A0%B7%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-08-15T09:14:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/15/CSS%E6%A0%B7%E5%BC%8F/">CSS样式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/15/CSS%E9%80%89%E6%8B%A9%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2021-08-14T23:16:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/15/CSS%E9%80%89%E6%8B%A9%E5%99%A8/">CSS选择器</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/14/HTML%E6%A0%87%E7%AD%BE/" class="archive-article-date">
-  	<time datetime="2021-08-14T01:06:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/14/HTML%E6%A0%87%E7%AD%BE/">HTML标签</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/%E5%89%8D%E7%AB%AF/">上一页</a><a class="page-number" href="/tags/%E5%89%8D%E7%AB%AF/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -761,9 +317,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
